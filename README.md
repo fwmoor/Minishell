@@ -1,2 +1,2 @@
 # Minishell
-## Well aren't you curious -_-
+## Well, aren't you curious -_-
