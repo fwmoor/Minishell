@@ -1,4 +1,4 @@
-#include "./libft/includes/libft.h"
+#include "../includes/minishell.h"
 
 int main(){
 	char *line;
