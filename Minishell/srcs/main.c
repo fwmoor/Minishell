@@ -8,7 +8,6 @@ int				main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
-	(void)env;
 	i = 1;
 	system("clear");
 	while (i)
@@ -17,7 +16,7 @@ int				main(int ac, char **av, char **env)
 		get_next_line(0, &line);
 		commands = ft_strsplit(line, ' ');
 		free(line);
-		i = exec_args(commands);
+		i = exec_args(commands, env);
 		free (commands);
 	}
 	// char *oldenv = strdup(getenv("PATH"));
