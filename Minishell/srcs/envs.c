@@ -12,5 +12,5 @@ char		*get_env(char *str, char **env)
 			temp = ft_strdup(env[i]);
 		i++;
 	}
-	return (ft_strchr(temp, '=') + 1);
+	return (temp);
 }
