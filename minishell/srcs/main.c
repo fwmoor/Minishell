@@ -1,23 +1,23 @@
 #include "../includes/minishell.h"
 
-int coms(char **commands)
+int				main(int ac, char **av, char **env)
 {
-	int i = 0;
-	while (commands[i])
-		system(commands[i++]);
-	return (i);
-}
+	int			i;
+	char		*line;
+	char		**commands;
 
-int main()
-{
-	char *line;
-	char **commands;
+	(void)ac;
+	(void)av;
+	(void)env;
+	i = 1;
 	system("clear");
-	while (1)
+	while (i)
 	{
 		ft_printf("\033[32;1m$>\033[0m ");
 		get_next_line(0, &line);
-		commands = ft_strsplit(line, ' ');
-		coms(commands);
+		commands = ft_strsplit(line, ';');
+		free(line);
+		i = exec_args(commands);
+		free (commands);
 	}
 }

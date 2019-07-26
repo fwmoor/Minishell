@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 10:34:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 15:26:33 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/26 09:25:10 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,25 @@ char		**ft_strsplit(char const *s, char c)
 {
 	int		i;
 	int		j;
+	int		k;
 	int		len;
-	int		start;
 	char	**ret;
 
-	if ((s == NULL) || (c == 0))
-		return (NULL);
 	len = word_len(s, c);
-	if (!(ret = malloc((sizeof(char *)) * (len + 1))))
+	if (!(ret = (char **)malloc((sizeof(char *)) * (len + 1))))
 		return (NULL);
 	i = 0;
 	j = -1;
 	while (++j < len)
 	{
-		while (s[i] && s[i] == c)
+		k = 0;
+		if (!(ret[j] = ft_strnew(word_len(&s[i], c) + 1)))
+			ret[j] = NULL;
+		while (s[i] == c)
 			i++;
-		start = i;
-		while (s[i] && s[i] != c)
-			i++;
-		ret[j] = ft_strsub(s, start, i - start);
-		i++;
+		while (s[i] != c && s[i])
+			ret[j][k++] = s[i++];
+		ret[j][k] = '\0';
 	}
 	ret[j] = NULL;
 	return (ret);
