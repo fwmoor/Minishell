@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
+/*   Updated: 2019/07/26 13:55:32 by fremoor          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 int				main(int ac, char **av, char **env)
@@ -17,12 +29,6 @@ int				main(int ac, char **av, char **env)
 		commands = ft_strsplit(line, ';');
 		free(line);
 		i = exec_args(commands, env);
-		free (commands);
+		free(commands);
 	}
-	// char *oldenv = strdup(getenv("PATH"));
-	// setenv("PATH", "hello", 1);
-	// system("echo $PATH");
-	// setenv("PATH", oldenv, 1);
-	// free(oldenv);
-	// system("echo $PATH");
 }
