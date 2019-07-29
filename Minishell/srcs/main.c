@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/29 19:41:54 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/29 19:45:24 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int				main(int ac, char **av, char **env)
 	system("clear");
 	while (i)
 	{
-		get_dir_path(env);
 		ft_printf("\033[32;1m~%s$>\033[0m ", get_dir_path(env));
 		get_next_line(0, &line);
 		commands = ft_strsplit(line, ';');
