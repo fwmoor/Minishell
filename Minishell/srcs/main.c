@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/26 13:55:32 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/29 17:26:08 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int				main(int ac, char **av, char **env)
 {
 	int			i;
+	char		buf[4097];
 	char		*line;
 	char		**commands;
 
@@ -24,7 +25,7 @@ int				main(int ac, char **av, char **env)
 	system("clear");
 	while (i)
 	{
-		ft_printf("\033[32;1m$>\033[0m ");
+		ft_printf("\033[32;1m%s $>\033[0m ", getcwd(buf, 4096));
 		get_next_line(0, &line);
 		commands = ft_strsplit(line, ';');
 		free(line);
