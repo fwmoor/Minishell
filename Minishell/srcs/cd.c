@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 10:55:18 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/30 14:03:36 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int				multi_cd(char *dirs)
 
 int				old_cd(char **env)
 {
-	
+	char		*old;
+
+	old = get_env("OLDPWD=", env);
+	chdir(old);
+	free(old);
 	return (0);
 }
 
