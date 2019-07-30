@@ -17,7 +17,7 @@ all: $(NAME)
 
 $(NAME): $(SRCO)
 	@make -C $(LIBFT_PATH)
-	@gcc $(FLAGS) -o $(NAME) $(SRCS) $(LIBFT_PATH)libftprintf.a
+	@gcc -lreadline $(FLAGS) -o $(NAME) $(SRCS) $(LIBFT_PATH)libftprintf.a
 	@echo "\033[32mBinary \033[1;32m$(NAME)\033[1;0m\033[32m Created.\033[0m"
 
 $(SRC_PATH)%.o: $(SRC_PATH)%.c

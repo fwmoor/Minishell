@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 14:10:44 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/30 20:10:48 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MINISHELL_H
 
 # include "../libft/includes/libft.h"
+# include <readline/history.h>
+# include <readline/readline.h>
 
 int			exec_echo(char *arg);
 int			main(int ac, char **av, char **env);
