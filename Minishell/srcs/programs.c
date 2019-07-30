@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/26 13:53:36 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/30 07:58:49 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int			exec_args(char **av, char **env)
 		{
 			free(av[i++]);
 			exec_cd(av[i], env);
+			free(av[i]);
 		}
 		else
 		{

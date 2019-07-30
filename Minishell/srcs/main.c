@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/29 19:45:24 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/30 08:05:19 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ char			*get_dir_path(char **env)
 
 	getcwd(buf, 4096);
 	home = get_env("HOME=", env);
-	return(ft_strstr(buf, home) + ft_strlen(home));
+	return(ft_strdup(ft_strstr(buf, home) + ft_strlen(home)));
 }
 
 int				main(int ac, char **av, char **env)
 {
 	int			i;
 	char		*line;
+	char		*home;
 	char		**commands;
 
 	(void)ac;
@@ -34,10 +35,12 @@ int				main(int ac, char **av, char **env)
 	system("clear");
 	while (i)
 	{
-		ft_printf("\033[32;1m~%s$>\033[0m ", get_dir_path(env));
+		home = get_dir_path(env);
+		ft_printf("\033[32;1m~%s$>\033[0m ", home);
 		get_next_line(0, &line);
 		commands = ft_strsplit(line, ';');
 		free(line);
+		free(home);
 		i = exec_args(commands, env);
 		free(commands);
 	}

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/26 13:52:03 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/30 08:00:54 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 int			exec_cd(char *arg, char **env)
 {
-	char	*temp;
-
 	if (!(arg))
-	{
-		temp = get_env("HOME=", env);
-		arg = ft_strdup(temp);
-		free(temp);
-	}
+		arg = ft_strdup(get_env("HOME=", env));
 	chdir(arg);
 	free(arg);
 	return (1);
