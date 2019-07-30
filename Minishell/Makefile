@@ -5,7 +5,7 @@ SRC_PATH = ./srcs/
 
 INCS = ./includes/minishell.h
 
-SRCS =	./srcs/main.c ./srcs/programs.c ./srcs/envs.c ./srcs/cd.c
+SRCS =	./srcs/main.c ./srcs/programs.c ./srcs/envs.c ./srcs/cd.c ./srcs/utils.c
 
 FLAGS = -Wall -Werror -Wextra
 
