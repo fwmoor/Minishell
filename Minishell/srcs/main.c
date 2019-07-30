@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 20:15:22 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/30 20:20:51 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void			end_quote(char *str, char *ptr)
 		if ((ptr = ft_strchr(ptr, '"')) == NULL)
 		{
 			ft_putstr("\033[1;32m");
-			str2 = readline("dquote$>");
-			ft_putstr("\033[0m");
+			str2 = readline("dquote$> \033[0m");
 			temp = ft_strjoin(str, "\n");
 			ft_strdel(&str);
 			str = ft_strjoin(temp, str2);
