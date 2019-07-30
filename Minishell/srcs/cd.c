@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 10:33:49 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/30 10:55:18 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,38 @@ int				multi_cd(char *dirs)
 	return (0);
 }
 
+int				old_cd(char **env)
+{
+	
+	return (0);
+}
+
+int				home_cd(char **env)
+{
+	char		*home;
+
+	home = get_env("HOME=", env);
+	chdir(home);
+	free(home);
+	return (0);
+}
+
 int				exec_cd(char *arg, char **env)
 {
 	int			tru;
 	char		*ret;
-	char		*home;
 	char		**dirs;
 
 	tru = 1;
 	dirs = ft_strsplit(arg, ' ');
-	if (dirs[1] == NULL || (dirs[1][0] == '/' && ft_strlen(dirs[1]) == 1))
-	{
-		home = get_env("HOME=", env);
-		ret = ft_strdup(home);
-		free(home);
-	}
+	if (dirs[1] == NULL || (dirs[1][0] == '/' && ft_strlen(dirs[1]) == 1) ||
+	(dirs[1][0] == '~' && ft_strlen(dirs[1]) == 1) || (dirs[1][0] == '-' &&
+	dirs[1][1] == '-' && ft_strlen(dirs[1]) == 2))
+		tru = home_cd(env);
 	else if (ft_strchr(dirs[1], '/'))
 		tru = multi_cd(dirs[1]);
+	else if (dirs[1][0] == '-' && ft_strlen(dirs[1]) == 1)
+		tru = old_cd(env);
 	else
 		ret = ft_strdup(dirs[1]);
 	free_her(dirs);
