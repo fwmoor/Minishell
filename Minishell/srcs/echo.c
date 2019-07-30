@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:09:51 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 15:22:42 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/30 15:30:06 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		print_wo_quote(char *str)
 		i++;
 		while (str[i] != '"')
 			i++;
-		ret = ft_strsub(str, 1, i - 1);
+		ret = ft_strsub(str, 1, ft_strlen(str) - 2);
 		ft_putstr(ret);
 		ft_strdel(&ret);
 	}
