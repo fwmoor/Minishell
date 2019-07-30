@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nonsys.c                                           :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 08:00:54 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/30 08:56:13 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 int			exec_cd(char *arg, char **env)
 {
-	if (!(arg))
-		arg = ft_strdup(get_env("HOME=", env));
-	chdir(arg);
+	char	*ret;
+	char	*home;
+
+	if (ft_strchr(arg, ' ') == NULL)
+	{
+		home = get_env("HOME=", env);
+		ret = ft_strdup(home);
+		free(home);
+	}
+	else
+		ret = ft_strdup(ft_strchr(arg, ' ') + 1);
+	chdir(ret);
+	free(ret);
 	free(arg);
 	return (1);
 }
