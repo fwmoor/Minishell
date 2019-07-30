@@ -1,45 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   programs.c                                         :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 14:15:56 by fremoor          ###   ########.fr       */
+/*   Created: 2019/07/30 14:09:51 by fremoor           #+#    #+#             */
+/*   Updated: 2019/07/30 15:22:42 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int			exec_args(char **av, char **env)
+void		print_wo_quote(char *str)
 {
 	int		i;
+	char	*ret;
 
 	i = 0;
-	while (av[i])
+	if (str[i] == '"')
 	{
-		if (ft_strcmp(av[i], "exit") == 0)
-		{
-			free(av[i]);
-			return (0);
-		}
-		else if (ft_strncmp(av[i], "cd", 2) == 0)
-		{
-			exec_cd(av[i], env);
+		i++;
+		while (str[i] != '"')
 			i++;
-		}
-		else if (ft_strncmp(av[i], "echo", 4) == 0)
-		{
-			exec_echo(av[i]);
-			i++;
-		}
-		else
-		{
-			free(av[i]);
-			system(av[i++]);
-			free(av[i]);
-		}
+		ret = ft_strsub(str, 1, i - 1);
+		ft_putstr(ret);
+		ft_strdel(&ret);
 	}
+	else
+		ft_putstr(str);
+}
+
+int			exec_echo(char *arg)
+{
+	int		i;
+	char	**print;
+
+	print = ft_strsplit(arg, ' ');
+	i = 1;
+	while (print[i])
+	{
+		print_wo_quote(print[i]);
+		if (print[++i] != NULL)
+			ft_putchar(' ');
+	}
+	ft_putchar('\n');
+	free_her(print);
+	free(arg);
 	return (1);
 }

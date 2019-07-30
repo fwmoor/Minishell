@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 09:50:15 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/30 14:10:44 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/includes/libft.h"
 
+int			exec_echo(char *arg);
 int			main(int ac, char **av, char **env);
 int			exec_args(char **commands, char **env);
 int			exec_cd(char *arg, char **env);
