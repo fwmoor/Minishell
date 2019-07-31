@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:09:51 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 15:30:06 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/31 13:22:20 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ int			exec_echo(char *arg)
 	int		i;
 	char	**print;
 
-	print = ft_strsplit(arg, ' ');
+	print = remove_quotes(arg);
 	i = 1;
 	while (print[i])
 	{
-		print_wo_quote(print[i]);
+		ft_putstr(print[i]);
 		if (print[++i] != NULL)
 			ft_putchar(' ');
 	}
 	ft_putchar('\n');
 	free_her(print);
-	free(arg);
 	return (1);
 }

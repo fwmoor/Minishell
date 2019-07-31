@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 14:03:36 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/31 14:08:25 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int				multi_cd(char *dirs)
 	i = 0;
 	multi = ft_strsplit(dirs, '/');
 	while (multi[i])
-		chdir(multi[i++]);
+	{
+	}
 	free_her(multi);
 	return (0);
 }
@@ -52,8 +53,8 @@ int				exec_cd(char *arg, char **env)
 	char		**dirs;
 
 	tru = 1;
-	dirs = ft_strsplit(arg, ' ');
-	if (dirs[1] == NULL || (dirs[1][0] == '/' && ft_strlen(dirs[1]) == 1) ||
+	dirs = remove_quotes(arg);
+	if (!dirs[1] || (dirs[1][0] == '/' && ft_strlen(dirs[1]) == 1) ||
 	(dirs[1][0] == '~' && ft_strlen(dirs[1]) == 1) || (dirs[1][0] == '-' &&
 	dirs[1][1] == '-' && ft_strlen(dirs[1]) == 2))
 		tru = home_cd(env);
@@ -69,6 +70,5 @@ int				exec_cd(char *arg, char **env)
 		chdir(ret);
 		free(ret);
 	}
-	free(arg);
 	return (1);
 }

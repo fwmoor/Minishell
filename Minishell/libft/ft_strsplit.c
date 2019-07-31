@@ -6,67 +6,71 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 10:34:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/30 10:29:26 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/31 14:07:12 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/libft.h"
 
-size_t	ft_wordlen(const char *s, char c)
+int		ft_countwords(char const *str, char c)
 {
-	size_t	i;
-	size_t	len;
+	int count;
+	int	i;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		while (str[i] == c)
+			i++;
+		if (str[i] != c && str[i] != '\0')
+			count++;
+		while (str[i] != c && str[i] != '\0')
+			i++;
+	}
+	return (count);
+}
+
+static int		get_word_len(char const *str, char c)
+{
+	int	i;
+	int	len;
 
 	i = 0;
 	len = 0;
-	while (s[i] == c)
+	while (str[i] == c)
 		i++;
-	while (s[i] != c && s[i++])
+	while (str[i] != c && str[i] != '\0')
+	{
+		i++;
 		len++;
+	}
 	return (len);
 }
 
-size_t	ft_wordcount(const char *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
-	size_t	i;
-	size_t	w;
+	int		i;
+	int		j;
+	int		k;
+	char	**str2;
 
-	i = 0;
-	w = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-			w++;
-		while (s[i] != c && s[i + 1])
-			i++;
-		i++;
-	}
-	return (w);
-}
-
-char	**ft_strsplit(char const *s, char c)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	char	**w;
-
-	i = 0;
-	k = 0;
-	if (!s || !(w = (char **)malloc(sizeof(char*) * (ft_wordcount(s, c) + 1))))
+	if (!s || !(str2 = (char **)malloc(sizeof(*str2) *
+		(ft_countwords(s, c) + 1))))
 		return (NULL);
-	while (i < ft_wordcount(s, c))
+	i = -1;
+	j = 0;
+	while (++i < ft_countwords(s, c))
 	{
-		if (!(w[i] = (char*)malloc(sizeof(char) * (ft_wordlen(&s[k], c) + 1))))
-			return (NULL);
-		j = 0;
-		while (s[k] == c)
-			k++;
-		while (s[k] != c && s[k])
-			w[i][j++] = s[k++];
-		w[i][j] = '\0';
-		i++;
+		k = 0;
+		if (!(str2[i] = ft_strnew(get_word_len(&s[j], c) + 1)))
+			str2[i] = NULL;
+		while (s[j] == c)
+			j++;
+		while (s[j] != c && s[j])
+			str2[i][k++] = s[j++];
+		str2[i][k] = '\0';
 	}
-	w[i] = NULL;
-	return (w);
+	str2[i] = 0;
+	return (str2);
 }

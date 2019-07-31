@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:49:55 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/11 10:10:23 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/31 14:03:51 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define BLUE "\x1b[34m"
 # define MAGENTA "\x1b[35m"
 # define CYAN "\x1b[36m"
+# define IS_SPACE(x) (x == ' ' || x == '\t' || x == '\r' || x == '\f')
 
 /*
 ** libft struct
