@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/31 14:08:25 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/01 15:32:18 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 int				multi_cd(char *dirs)
 {
 	int			i;
+	char		cur[4097];
 	char		**multi;
 
 	i = 0;
+	getcwd(cur, 4096);
 	multi = ft_strsplit(dirs, '/');
 	while (multi[i])
-	{
-	}
+		if ((chdir(multi[i++])) == -1)
+		{
+			ft_printf("cd: no such file or directory: %s\n", dirs);
+			free_her(multi);
+			chdir(cur);
+			return (0);
+		}
 	free_her(multi);
 	return (0);
 }
