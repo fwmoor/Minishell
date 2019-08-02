@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/02 09:39:26 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/02 11:58:08 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char			*end_quote(char *str)
 	char		*str2;
 
 	ptr = str;
-	while ((ptr = ft_strchr(ptr, '"'))!= NULL || (ptr = ft_strstr(ptr, "'")) != NULL)
+	while ((ptr = ft_strchr(ptr, '"')) != NULL)
 	{
 		++ptr;
 		if ((ptr = ft_strchr(ptr, '"')) == NULL)
@@ -55,8 +55,8 @@ int				main(int ac, char **av, char **env)
 		line = end_quote(line);
 		add_history(line);
 		commands = ft_strsplit(line, ';');
-		i = exec_args(commands, env);
 		free(line);
+		i = exec_args(commands, env);
 		free(commands);
 	}
 }

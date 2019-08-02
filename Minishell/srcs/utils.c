@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/02 09:01:38 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/02 12:01:30 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		free_her(char **dirs)
 
 	i = 0;
 	while (dirs[i])
-		free(dirs[i++]);
+		ft_strdel(&dirs[i++]);
 	free(dirs);
 }
 

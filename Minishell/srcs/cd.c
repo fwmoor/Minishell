@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/02 09:06:07 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/02 12:01:01 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				old_cd(char **env)
 
 	old = get_env("OLDPWD=", env);
 	chdir(old);
-	free(old);
+	ft_strdel(&old);
 	return (0);
 }
 
@@ -69,7 +69,7 @@ int				home_cd(char **env)
 
 	home = get_env("HOME=", env);
 	chdir(home);
-	free(home);
+	ft_strdel(&home);
 	return (0);
 }
 
@@ -98,8 +98,7 @@ int				exec_cd(char *arg, char **env)
 	{
 		if ((chdir(ret)) == -1)
 			error_cd(ret);
-		else
-			free(ret);
+		ft_strdel(&ret);
 	}
 	return (1);
 }
