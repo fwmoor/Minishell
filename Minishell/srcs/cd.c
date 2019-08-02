@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/02 12:01:01 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/02 14:06:06 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void			error_cd(char *dir)
 			ft_putchar(dir[i]);
 		i++;
 	}
+	free(dir);
 	ft_putchar('\n');
 }
 
@@ -90,15 +91,14 @@ int				exec_cd(char *arg, char **env)
 	else if (dirs[1][0] == '-' && ft_strlen(dirs[1]) == 1)
 		tru = old_cd(env);
 	else
-	{
 		ret = ft_strdup(dirs[1]);
-		free_her(dirs);
-	}
 	if (tru == 1)
 	{
 		if ((chdir(ret)) == -1)
 			error_cd(ret);
-		ft_strdel(&ret);
+		else
+			ft_strdel(&ret);
 	}
+	free_her(dirs);
 	return (1);
 }
