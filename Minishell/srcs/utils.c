@@ -6,11 +6,30 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/02 12:02:59 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/02 15:31:26 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void		pop_env(char **env)
+{
+	int		i;
+
+	i = 0;
+	while (env[i])
+		i++;
+	g_env = (char **)malloc(sizeof(char *) * (i + 1));
+	if (g_env)
+	{
+		g_env[i--] = NULL;
+		while (i >= 0)
+		{
+			g_env[i] = ft_strdup(env[i]);
+			i--;
+		}
+	}
+}		
 
 char		**remove_quotes(char *str)
 {
@@ -45,27 +64,27 @@ void		free_her(char **dirs)
 	free(dirs);
 }
 
-char		*get_env(char *str, char **env)
+char		*get_env(char *str)
 {
 	int		i;
 
 	i = 0;
-	while (env[i])
+	while (g_env[i])
 	{
-		if (ft_strncmp(str, env[i], ft_strlen(str)) == 0)
-			return (ft_strdup(ft_strchr(env[i], '=') + 1));
+		if (ft_strncmp(str, g_env[i], ft_strlen(str)) == 0)
+			return (ft_strdup(ft_strchr(g_env[i], '=') + 1));
 		i++;
 	}
 	return (NULL);
 }
 
-void			get_dir_path(char **env)
+void			get_dir_path()
 {
 	char		*home;
 	char		buf[4097];
 
 	getcwd(buf, 4096);
-	home = get_env("HOME=", env);
+	home = get_env("HOME=");
 	ft_printf("\033[32;1m~%s$>\033[0m", ft_strstr(buf, home) + ft_strlen(home));
 	free(home);
 }
