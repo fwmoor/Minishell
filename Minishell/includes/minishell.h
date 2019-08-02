@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/31 13:16:11 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/02 14:26:05 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <readline/readline.h>
 
 int			exec_echo(char *arg);
+int			exec_sys(char *com);
 int			main(int ac, char **av, char **env);
 int			exec_args(char **commands, char **env);
 int			exec_cd(char *arg, char **env);
