@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/01 15:32:18 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/02 09:06:07 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void			error_cd(char *dir)
+{
+	int			i;
+
+	i = 0;
+	ft_putstr("cd: no such file or directory: ");
+	while (dir[i])
+	{
+		if (dir[i] == '\n')
+		{
+			ft_putchar('\\');
+			ft_putchar('n');
+		}
+		else
+			ft_putchar(dir[i]);
+		i++;
+	}
+	ft_putchar('\n');
+}
 
 int				multi_cd(char *dirs)
 {
@@ -70,12 +90,16 @@ int				exec_cd(char *arg, char **env)
 	else if (dirs[1][0] == '-' && ft_strlen(dirs[1]) == 1)
 		tru = old_cd(env);
 	else
+	{
 		ret = ft_strdup(dirs[1]);
-	free_her(dirs);
+		free_her(dirs);
+	}
 	if (tru == 1)
 	{
-		chdir(ret);
-		free(ret);
+		if ((chdir(ret)) == -1)
+			error_cd(ret);
+		else
+			free(ret);
 	}
 	return (1);
 }

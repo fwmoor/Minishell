@@ -6,40 +6,30 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/31 12:34:41 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/02 09:22:47 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int			exec_args(char **av, char **env)
+int			check_builtins(char **com)
+{
+	if (ft_strnequ(com[0], "exit", 4))
+		return (-1);
+	return (0);
+}
+
+int			exec_args(char **coms, char **env)
 {
 	int		i;
+	(void)env;
 
 	i = 0;
-	while (av[i])
+	while (coms[i])
 	{
-		if (ft_strcmp(av[i], "exit") == 0)
-		{
-			free(av[i]);
+		if (check_builtins(coms) == -1)
 			return (0);
-		}
-		else if (ft_strncmp(av[i], "cd ", 3) == 0)
-		{
-			exec_cd(av[i], env);
-			i++;
-		}
-		else if (ft_strncmp(av[i], "echo ", 5) == 0)
-		{
-			exec_echo((av[i]));
-			i++;
-		}
-		else
-		{
-			free(av[i]);
-			system(av[i++]);
-			free(av[i]);
-		}
+		i++;
 	}
 	return (1);
 }
