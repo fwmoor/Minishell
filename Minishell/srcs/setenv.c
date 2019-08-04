@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/02 16:08:51 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/04 11:09:24 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int			get_envind(char *key)
 	temp = ft_strjoin(key, "=");
 	while (g_env[i])
 	{
-		if (ft_strncmp(temp, g_env[i], ft_strlen(temp)))
+		if (ft_strncmp(temp, g_env[i], ft_strlen(temp)) == 0)
 		{
-			free(temp);
+			ft_strdel(&temp);
 			return (i);
 		}
 		i++;
 	}
-	free(temp);
+	ft_strdel(&temp);
 	return (-1);
 }
 
@@ -39,12 +39,14 @@ int			setenv_var(char *key, char *val)
 	char	*temp_key;
 
 	i = get_envind(key);
+
 	//if (!(temp = get_env(key, env))
 	temp_key = ft_strjoin(key, "=");
 	temp = ft_strjoin(temp_key, val);
-	free(temp_key);
-	free(g_env[i]);
+	ft_strdel(&temp_key);
+	ft_strdel(&g_env[i]);
 	g_env[i] = ft_strdup(temp);
+	free(temp);
 	return (0);
 }
 

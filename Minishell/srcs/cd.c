@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/02 15:30:59 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/04 11:11:13 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int				multi_cd(char *dirs)
 			chdir(cur);
 			return (0);
 		}
+	setenv_var("OLDPWD", cur);
 	free_her(multi);
 	return (0);
 }
@@ -57,9 +58,13 @@ int				multi_cd(char *dirs)
 int				old_cd()
 {
 	char		*old;
-
+	char		cur[4097];
+	
+	getcwd(cur, 4096);
 	old = get_env("OLDPWD=");
 	chdir(old);
+	ft_printf("%s\n", old);
+	setenv_var("OLDPWD", cur);
 	ft_strdel(&old);
 	return (0);
 }
@@ -67,9 +72,12 @@ int				old_cd()
 int				home_cd()
 {
 	char		*home;
+	char		cur[4097];
 
+	getcwd(cur, 4096);
 	home = get_env("HOME=");
 	chdir(home);
+	setenv_var("OLDPWD", cur);
 	ft_strdel(&home);
 	return (0);
 }
@@ -78,9 +86,11 @@ int				exec_cd(char *arg)
 {
 	int			tru;
 	char		*ret;
+	char		cur[4097];
 	char		**dirs;
 
 	tru = 1;
+	getcwd(cur, 4096);
 	dirs = remove_quotes(arg);
 	if (!dirs[1] || (dirs[1][0] == '/' && ft_strlen(dirs[1]) == 1) ||
 	(dirs[1][0] == '~' && ft_strlen(dirs[1]) == 1) || (dirs[1][0] == '-' &&
@@ -97,7 +107,10 @@ int				exec_cd(char *arg)
 		if ((chdir(ret)) == -1)
 			error_cd(ret);
 		else
+		{
+			setenv_var("OLDPWD", cur);
 			ft_strdel(&ret);
+		}
 	}
 	free_her(dirs);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   programs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/02 15:58:00 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/04 10:24:12 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int			check_builtins(char **com)
 		return (exec_cd(com[0]));
 	else if (ft_strnequ(com[0], "setenv", 6))
 		return (exec_setenv(com[0]));
+	else if (ft_strnequ(com[0], "env", 3))
+		return (exec_env(com[0]));
 	return (0);
 }
 
