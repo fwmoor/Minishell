@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/04 11:15:45 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/05 09:31:54 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int				old_cd()
 	ret = ft_strdup(ft_strstr(old, home) + ft_strlen(home));
 	ft_printf("\033[1;34m~%s\033[0m\n", ret);
 	setenv_var("OLDPWD", cur);
-	ft_strdel(&home);
-	ft_strdel(&old);
-	ft_strdel(&ret);
+	free(home);
+	free(old);
+	free(ret);
 	return (0);
 }
 

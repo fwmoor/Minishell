@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/04 11:09:24 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/05 09:30:32 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,14 @@ int			setenv_var(char *key, char *val)
 	char	*temp_key;
 
 	i = get_envind(key);
-
 	//if (!(temp = get_env(key, env))
 	temp_key = ft_strjoin(key, "=");
 	temp = ft_strjoin(temp_key, val);
 	ft_strdel(&temp_key);
 	ft_strdel(&g_env[i]);
 	g_env[i] = ft_strdup(temp);
-	free(temp);
-	return (0);
+	ft_strdel(&temp);
+	return (1);
 }
 
 int			exec_setenv(char *arg)
