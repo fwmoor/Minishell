@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 09:11:41 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 10:16:18 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 char		**g_env;
 int			get_envind(char *key);
 int			exec_env();
-int			setenv_var(char *key, char *val);
+int			setenv_var(char *key, char *val, int ow);
 void		pop_env(char **env);
 int			exec_echo(char *arg);
 int			exec_sys(char *com);

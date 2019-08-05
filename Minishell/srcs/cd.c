@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 09:31:54 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 10:18:25 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int				multi_cd(char *dirs)
 			chdir(cur);
 			return (0);
 		}
-	setenv_var("OLDPWD", cur);
+	setenv_var("OLDPWD", cur, 1);
 	free_her(multi);
 	return (0);
 }
@@ -68,7 +68,7 @@ int				old_cd()
 	chdir(old);
 	ret = ft_strdup(ft_strstr(old, home) + ft_strlen(home));
 	ft_printf("\033[1;34m~%s\033[0m\n", ret);
-	setenv_var("OLDPWD", cur);
+	setenv_var("OLDPWD", cur, 1);
 	free(home);
 	free(old);
 	free(ret);
@@ -83,7 +83,7 @@ int				home_cd()
 	getcwd(cur, 4096);
 	home = get_env("HOME=");
 	chdir(home);
-	setenv_var("OLDPWD", cur);
+	setenv_var("OLDPWD", cur, 1);
 	ft_strdel(&home);
 	return (0);
 }
@@ -114,7 +114,7 @@ int				exec_cd(char *arg)
 			error_cd(ret);
 		else
 		{
-			setenv_var("OLDPWD", cur);
+			setenv_var("OLDPWD", cur, 1);
 			ft_strdel(&ret);
 		}
 	}
