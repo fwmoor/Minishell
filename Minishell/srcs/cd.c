@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 15:32:40 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 16:42:00 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,25 @@ int				home_cd(void)
 
 int				exec_cd(char **dirs)
 {
-	for (int j = 0; dirs[j]; j++)
-		ft_putendl(dirs[j]);
-	// int			tru;
-	// char		*ret;
-	// char		cur[4097];
+	int			tru;
+	char		*ret;
+	char		cur[4097];
 
-	// tru = 1;
-	// getcwd(cur, 4096);
-	// if (check_cd(dirs[1]) > 0)
-	// 	tru = (check_cd(dirs[1]) == 1) ? old_cd() : home_cd();
-	// else if (ft_strchr(dirs[1], '/'))
-	// 	tru = multi_cd(dirs[1]);
-	// else
-	// 	ret = ft_strdup(dirs[1]);
-	// if (tru == 1)
-	// {
-	// 	if ((chdir(ret)) == -1)
-	// 		error_cd(ret);
-	// 	else
-	// 		setenv_var("OLDPWD", cur, 1);
-	// 	ft_strdel(&ret);
-	// }
-	// free_her(dirs);
+	tru = 1;
+	getcwd(cur, 4096);
+	if (check_cd(dirs[1]) > 0)
+		tru = (check_cd(dirs[1]) == 1) ? old_cd() : home_cd();
+	else if (ft_strchr(dirs[1], '/'))
+		tru = multi_cd(dirs[1]);
+	else
+		ret = ft_strdup(dirs[1]);
+	if (tru == 1)
+	{
+		if ((chdir(ret)) == -1)
+			error_cd(ret);
+		else
+			setenv_var("OLDPWD", cur, 1);
+		ft_strdel(&ret);
+	}
 	return (1);
 }

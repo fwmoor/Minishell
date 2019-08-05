@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unsetenv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 11:56:08 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 15:20:04 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 16:42:25 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ int			exec_unsetenv(char **com)
 	else if (com[1])
 		if ((key_ind = get_envind(com[1])) != -1)
 			i = unsetenv_var(key_ind);
-	free_her(com);
 	return (i);
 }
