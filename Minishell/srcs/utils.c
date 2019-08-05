@@ -6,15 +6,15 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 09:56:48 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 14:33:11 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void		pop_env(char **env)
+void			pop_env(char **env)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (env[i])
@@ -29,13 +29,13 @@ void		pop_env(char **env)
 			i--;
 		}
 	}
-}		
+}
 
-char		**remove_quotes(char *str)
+char			**remove_quotes(char *str)
 {
-	int		i;
-	char	**ret;
-	
+	int			i;
+	char		**ret;
+
 	i = 0;
 	while (str[i])
 	{
@@ -54,9 +54,9 @@ char		**remove_quotes(char *str)
 	return (ret);
 }
 
-void		free_her(char **dirs)
+void			free_her(char **dirs)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (dirs[i])
@@ -64,9 +64,9 @@ void		free_her(char **dirs)
 	free(dirs);
 }
 
-char		*get_env(char *str)
+char			*get_env(char *str)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (g_env[i])
@@ -78,7 +78,7 @@ char		*get_env(char *str)
 	return (NULL);
 }
 
-void			get_dir_path()
+void			get_dir_path(void)
 {
 	char		*home;
 	char		buf[4097];

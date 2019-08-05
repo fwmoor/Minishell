@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 10:18:25 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 15:00:27 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void			error_cd(char *dir)
 			ft_putchar(dir[i]);
 		i++;
 	}
-	free(dir);
 	ft_putchar('\n');
 }
 
@@ -55,13 +54,13 @@ int				multi_cd(char *dirs)
 	return (0);
 }
 
-int				old_cd()
+int				old_cd(void)
 {
 	char		*old;
 	char		*home;
 	char		*ret;
 	char		cur[4097];
-	
+
 	getcwd(cur, 4096);
 	old = get_env("OLDPWD=");
 	home = get_env("HOME=");
@@ -75,7 +74,7 @@ int				old_cd()
 	return (0);
 }
 
-int				home_cd()
+int				home_cd(void)
 {
 	char		*home;
 	char		cur[4097];
@@ -98,14 +97,10 @@ int				exec_cd(char *arg)
 	tru = 1;
 	getcwd(cur, 4096);
 	dirs = remove_quotes(arg);
-	if (!dirs[1] || (dirs[1][0] == '/' && ft_strlen(dirs[1]) == 1) ||
-	(dirs[1][0] == '~' && ft_strlen(dirs[1]) == 1) || (dirs[1][0] == '-' &&
-	dirs[1][1] == '-' && ft_strlen(dirs[1]) == 2))
-		tru = home_cd();
+	if (check_cd(dirs[1]) > 0)
+		tru = (check_cd(dirs[1]) == 1) ? old_cd() : home_cd();
 	else if (ft_strchr(dirs[1], '/'))
 		tru = multi_cd(dirs[1]);
-	else if (dirs[1][0] == '-' && ft_strlen(dirs[1]) == 1)
-		tru = old_cd();
 	else
 		ret = ft_strdup(dirs[1]);
 	if (tru == 1)
@@ -113,10 +108,8 @@ int				exec_cd(char *arg)
 		if ((chdir(ret)) == -1)
 			error_cd(ret);
 		else
-		{
 			setenv_var("OLDPWD", cur, 1);
-			ft_strdel(&ret);
-		}
+		ft_strdel(&ret);
 	}
 	free_her(dirs);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 12:23:16 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 14:33:49 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int				exec_env(char *com)
 	return (1);
 }
 
-int			get_envind(char *key)
+int				get_envind(char *key)
 {
-	int		i;
-	char	*temp;
+	int			i;
+	char		*temp;
 
 	i = 0;
 	temp = ft_strjoin(key, "=");
@@ -43,13 +43,13 @@ int			get_envind(char *key)
 	return (-1);
 }
 
-void		setnew_env(char *key, char *val)
+void			setnew_env(char *key, char *val)
 {
-	int		i;
-	int		len;
-	char	*key_temp;
-	char	*key_new;
-	char	**temp;
+	int			i;
+	int			len;
+	char		*key_temp;
+	char		*key_new;
+	char		**temp;
 
 	i = 0;
 	len = 0;
@@ -72,11 +72,11 @@ void		setnew_env(char *key, char *val)
 	g_env = temp;
 }
 
-int			setenv_var(char *key, char *val, int ow)
+int				setenv_var(char *key, char *val, int ow)
 {
-	int		i;
-	char	*temp;
-	char	*temp_key;
+	int			i;
+	char		*temp;
+	char		*temp_key;
 
 	i = get_envind(key);
 	if (i != -1 && ow > 0)
@@ -93,11 +93,11 @@ int			setenv_var(char *key, char *val, int ow)
 	return (1);
 }
 
-int			exec_setenv(char *arg)
+int				exec_setenv(char *arg)
 {
-	int		i;
-	int		ow;
-	char	**com;
+	int			i;
+	int			ow;
+	char		**com;
 
 	i = 1;
 	ow = 0;

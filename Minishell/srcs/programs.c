@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 12:13:22 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 14:34:04 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			exec_args(char **coms)
 		else if (check_builtins(coms) == -1)
 			return (0);
 		else
-			exec_sys(coms[i]); 
+			exec_sys(coms[i]);
 		i++;
 	}
 	return (1);

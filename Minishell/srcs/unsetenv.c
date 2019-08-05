@@ -6,25 +6,22 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 11:56:08 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 14:22:22 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 14:32:11 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int			unsetenv_var(char *key)
+int			unsetenv_var(int key_ind)
 {
 	int		i;
 	int		j;
 	int		len;
-	int		key_ind;
 	char	**temp;
 
 	i = 0;
 	j = 0;
 	len = 0;
-	if ((key_ind = get_envind(key)) == -1)
-		return (0);
 	while (g_env[len])
 		len++;
 	temp = (char **)malloc(sizeof(char *) * (len + 1));
@@ -46,16 +43,18 @@ int			unsetenv_var(char *key)
 int			exec_unsetenv(char *arg)
 {
 	int		i;
+	int		key_ind;
 	char	**com;
 
 	i = 1;
 	com = remove_quotes(arg);
 	if (!(com[1]))
-		ft_putstr("setenv: too few arguments\n");
+		ft_putstr("unsetenv: too few arguments\n");
 	else if (com[1] && com[2])
-		ft_putstr("setenv: too many arguments\n");
+		ft_putstr("unsetenv: too many arguments\n");
 	else if (com[1])
-		i = unsetenv_var(com[1]);
+		if ((key_ind = get_envind(com[1])) != -1)
+			i = unsetenv_var(key_ind);
 	free_her(com);
 	return (i);
 }
