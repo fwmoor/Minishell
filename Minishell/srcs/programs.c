@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 16:46:28 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/05 17:01:08 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			check_builtins(char **dirs)
 		i = exec_setenv(dirs);
 	else if (ft_strequ(dirs[0], "unsetenv"))
 		i = exec_unsetenv(dirs);
+	else if (ft_strequ(dirs[0], "echo"))
+		i = exec_echo(dirs);
 	else if (ft_strequ(dirs[0], "env"))
 		i = exec_env();
 	free_her(dirs);
