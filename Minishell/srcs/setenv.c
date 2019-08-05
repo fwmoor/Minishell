@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 10:54:32 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 12:23:16 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void		setnew_env(char *key, char *val)
 	len = 0;
 	while (g_env[len])
 		len++;
+	len++;
 	temp = (char **)malloc(sizeof(char *) * (len + 1));
-	temp[len--] = 0;
+	temp[len] = 0;
 	while (g_env[i])
 	{
 		temp[i] = ft_strdup(g_env[i]);
