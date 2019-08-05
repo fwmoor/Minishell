@@ -6,11 +6,22 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 10:46:06 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 10:54:32 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int				exec_env(char *com)
+{
+	int			i;
+
+	i = 0;
+	while (g_env[i])
+		ft_putendl(g_env[i++]);
+	ft_strdel(&com);
+	return (1);
+}
 
 int			get_envind(char *key)
 {
