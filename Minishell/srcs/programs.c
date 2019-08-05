@@ -6,41 +6,52 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 14:34:04 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 15:40:53 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int			check_builtins(char **com)
+int			check_builtins(char **dirs)
 {
-	if (ft_strnequ(com[0], "exit", 4))
-		return (-1);
-	else if (ft_strnequ(com[0], "cd", 2))
-		return (exec_cd(com[0]));
-	else if (ft_strnequ(com[0], "setenv", 6))
-		return (exec_setenv(com[0]));
-	else if (ft_strnequ(com[0], "unsetenv", 8))
-		return (exec_unsetenv(com[0]));
-	else if (ft_strnequ(com[0], "env", 3))
-		return (exec_env(com[0]));
-	return (0);
+	int		i;
+
+	i = 0;
+	if (ft_strequ(dirs[0], "exit"))
+		i = -1;
+	else if (ft_strequ(dirs[0], "cd"))
+		i = exec_cd(dirs);
+	else if (ft_strequ(dirs[0], "setenv"))
+		i = exec_setenv(dirs);
+	else if (ft_strequ(dirs[0], "unsetenv"))
+		i = exec_unsetenv(dirs);
+	else if (ft_strequ(dirs[0], "env"))
+		i = exec_env();
+	free_her(dirs);
+	return (i);
 }
 
 int			exec_args(char **coms)
 {
 	int		i;
+	char	**args;
 
 	i = 0;
-	while (coms[i] != NULL)
+	while (coms[i])
 	{
-		if (check_builtins(coms) == 1)
-			return (1);
-		else if (check_builtins(coms) == -1)
+		if (check_bin(coms[i]) == 1)
+		{
+			args = remove_quotes(coms[i]);
+			check_builtins(args);
+			i++;
+		}
+		else if (check_bin(coms[i]) == -1)
 			return (0);
 		else
+		{
 			exec_sys(coms[i]);
-		i++;
+			i++;
+		}
 	}
 	return (1);
 }

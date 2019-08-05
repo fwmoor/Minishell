@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 14:57:25 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 15:40:42 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@
 
 char		**g_env;
 int			get_envind(char *key);
-int			exec_env();
+int			exec_env(void);
 int			setenv_var(char *key, char *val, int ow);
-int			exec_unsetenv(char *arg);
+int			exec_unsetenv(char **arg);
 int			check_cd(char *dir);
+int			check_bin(char *arg);
 void		pop_env(char **env);
-int			exec_echo(char *arg);
+int			exec_echo(char **arg);
 int			exec_sys(char *com);
 int			main(int ac, char **av, char **env);
 int			exec_args(char **commands);
-int			exec_cd(char *arg);
-int			exec_setenv(char *arg);
+int			exec_cd(char **arg);
+int			exec_setenv(char **arg);
 char		*get_env(char *str);
 char		**remove_quotes(char *dirs);
 void		get_dir_path();

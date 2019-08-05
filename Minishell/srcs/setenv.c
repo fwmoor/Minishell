@@ -6,20 +6,19 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 14:33:49 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 15:40:33 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int				exec_env(char *com)
+int				exec_env(void)
 {
 	int			i;
 
 	i = 0;
 	while (g_env[i])
 		ft_putendl(g_env[i++]);
-	ft_strdel(&com);
 	return (1);
 }
 
@@ -93,15 +92,13 @@ int				setenv_var(char *key, char *val, int ow)
 	return (1);
 }
 
-int				exec_setenv(char *arg)
+int				exec_setenv(char **com)
 {
 	int			i;
 	int			ow;
-	char		**com;
 
 	i = 1;
 	ow = 0;
-	com = remove_quotes(arg);
 	if (!(com[1] && com[2] && com[3]))
 		ft_putstr("setenv: too few arguments\n");
 	else if (com[1] && com[2] && com[3] && com[4])

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 11:56:08 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 14:32:11 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 15:20:04 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ int			unsetenv_var(int key_ind)
 	return (1);
 }
 
-int			exec_unsetenv(char *arg)
+int			exec_unsetenv(char **com)
 {
 	int		i;
 	int		key_ind;
-	char	**com;
 
 	i = 1;
-	com = remove_quotes(arg);
 	if (!(com[1]))
 		ft_putstr("unsetenv: too few arguments\n");
 	else if (com[1] && com[2])

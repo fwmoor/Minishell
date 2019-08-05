@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 14:33:11 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 15:37:22 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char			**remove_quotes(char *str)
 		i++;
 	}
 	ret = ft_strsplit(str, '"');
-	ft_strdel(&str);
 	return (ret);
 }
 
