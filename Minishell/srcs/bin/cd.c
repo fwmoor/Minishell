@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 16:59:36 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/05 17:23:05 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int				old_cd(void)
 	home = get_env("HOME=");
 	chdir(old);
 	ret = ft_strdup(ft_strstr(old, home) + ft_strlen(home));
-	ft_printf("\033[1;34m~%s\033[0m\n", ret);
+	ft_printf(C_BLUE"~%s\n"C_DEFAULT, ret);
 	setenv_var("OLDPWD", cur, 1);
 	free(home);
 	free(old);

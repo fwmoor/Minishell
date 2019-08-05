@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 15:34:03 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/05 17:21:32 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char			*end_quote(char *str)
 		++ptr;
 		if ((ptr = ft_strchr(ptr, '"')) == NULL)
 		{
-			str2 = readline("\033[1;32mdquote$>\033[0m");
+			str2 = readline(C_GREEN"dquote$>"C_DEFAULT);
 			temp = ft_strjoin(str, "\n");
 			ft_strdel(&str);
 			str = ft_strjoin(temp, str2);
