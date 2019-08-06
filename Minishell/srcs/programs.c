@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   programs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 17:01:08 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/06 09:31:16 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int			exec_args(char **coms)
 		else
 		{
 			exec_sys(coms[i]);
+			ft_strdel(&coms[i]);
 			i++;
 		}
 	}
