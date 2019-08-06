@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 10:48:39 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/06 11:49:34 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,14 @@ char			*end_quote(char *str)
 	return (str);
 }
 
-void			sigint_handler() {
-	ft_putendl("test");
+void			sigint_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		ft_putstr("\n");
+		get_dir_path();
+		signal(SIGINT, sigint_handler);
+	}
 }
 
 int				main(int ac, char **av, char **env)
@@ -55,8 +61,8 @@ int				main(int ac, char **av, char **env)
 	pop_env(env);
 	while (i)
 	{
-		signal(SIGINT, sigint_handler);
 		get_dir_path(g_env);
+		signal(SIGINT, sigint_handler);
 		line = readline(" ");
 		line = end_quote(line);
 		add_history(line);
