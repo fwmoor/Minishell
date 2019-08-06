@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 17:22:09 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/06 14:46:10 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,12 @@ void			get_dir_path(void)
 	char		buf[4097];
 
 	getcwd(buf, 4096);
-	home = get_env("HOME=");
-	ft_printf(C_GREEN"~%s$>"C_DEFAULT, ft_strstr(buf, home) + ft_strlen(home));
-	free(home);
+	if (ft_strcmp(buf, "/"))
+	{
+		home = get_env("HOME=");
+		ft_printf(C_GREEN"~%s$>"C_DEFAULT, ft_strstr(buf, home) + ft_strlen(home));
+		free(home);
+	}
+	else
+		ft_printf(C_GREEN"~/$>"C_DEFAULT);
 }

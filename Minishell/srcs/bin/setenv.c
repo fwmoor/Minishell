@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 16:59:40 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/06 14:15:35 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ void			setnew_env(char *key, char *val)
 	g_env = temp;
 }
 
-int				setenv_var(char *key, char *val, int ow)
+int				setenv_var(char *key, char *val)
 {
 	int			i;
 	char		*temp;
 	char		*temp_key;
 
 	i = get_envind(key);
-	if (i != -1 && ow > 0)
+	if (i != -1)
 	{
 		temp_key = ft_strjoin(key, "=");
 		temp = ft_strjoin(temp_key, val);
@@ -95,18 +95,15 @@ int				setenv_var(char *key, char *val, int ow)
 int				exec_setenv(char **com)
 {
 	int			i;
-	int			ow;
 
 	i = 1;
-	ow = 0;
-	if (!(com[1] && com[2] && com[3]))
+	if (!(com[1] && com[2]))
 		ft_putstr("setenv: too few arguments\n");
-	else if (com[1] && com[2] && com[3] && com[4])
+	else if (com[3])
 		ft_putstr("setenv: too many arguments\n");
-	else if (com[1] && com[2] && com[3])
+	else if (com[1] && com[2])
 	{
-		ow = ft_atoi(com[3]);
-		i = setenv_var(com[1], com[2], ow);
+		i = setenv_var(com[1], com[2]);
 	}
 	return (i);
 }

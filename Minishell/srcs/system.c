@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 11:49:39 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/06 14:25:57 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,13 @@ int				exec_sys(char *com)
 
 	temp = remove_quotes(com);
 	path = get_path(temp[0]);
-	signal(SIGINT, proc_signal_handler);
-	if (!(pid = fork()))
-		execve(path, temp, g_env);
-	wait(&pid);
+	if (path != NULL)
+	{
+		signal(SIGINT, proc_signal_handler);
+		if (!(pid = fork()))
+			execve(path, temp, g_env);
+		wait(&pid);
+	}
 	free(path);
 	free_her(temp);
 	return (1);
