@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 17:21:32 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/06 10:48:39 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ char			*end_quote(char *str)
 	return (str);
 }
 
+void			sigint_handler() {
+	ft_putendl("test");
+}
+
 int				main(int ac, char **av, char **env)
 {
 	int			i;
@@ -51,6 +55,7 @@ int				main(int ac, char **av, char **env)
 	pop_env(env);
 	while (i)
 	{
+		signal(SIGINT, sigint_handler);
 		get_dir_path(g_env);
 		line = readline(" ");
 		line = end_quote(line);
