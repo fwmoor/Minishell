@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 14:31:11 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/06 15:39:00 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 
-# define C_DEFAULT "\033[0m"
+# define C_DEF "\033[0m"
 # define C_GREEN "\033[1;32m"
 # define C_BLUE "\033[1;34m"
 

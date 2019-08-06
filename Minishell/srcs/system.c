@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 14:25:57 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/06 15:38:03 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char			*do_path(char *bin, char *com)
 	char		*path;
 
 	if (ft_strstr(bin, com) != NULL)
-			path = ft_strdup(com);
+		path = ft_strdup(com);
 	else
 	{
 		temp = ft_strjoin(bin, "/");
@@ -81,6 +81,7 @@ int				exec_sys(char *com)
 		wait(&pid);
 	}
 	free(path);
+	ft_strdel(&com);
 	free_her(temp);
 	return (1);
 }
