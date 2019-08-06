@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 14:35:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 15:13:54 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/06 19:28:40 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,6 @@ int				check_cd(char *dir)
 		return (2);
 	else if (dir[0] == '/' && ft_strlen(dir) == 1)
 		return (3);
-	return (0);
-}
-
-int				check_bin(char *arg)
-{
-	if (ft_strequ(arg, "env"))
-		return (1);
-	if (ft_strnequ(arg, "cd", 2))
-		return (1);
-	if (ft_strnequ(arg, "echo", 4))
-		return (1);
-	if (ft_strequ(arg, "setenv"))
-		return (1);
-	if (ft_strequ(arg, "unsetenv"))
-		return (1);
-	if (ft_strequ(arg, "exit"))
-		return (-1);
 	return (0);
 }
 

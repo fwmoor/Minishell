@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 15:38:03 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/06 19:31:52 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int				exec_sys(char *com)
 			execve(path, temp, g_env);
 		wait(&pid);
 	}
+	else
+		ft_printf("minishell: command not found: %s\n", com);
 	free(path);
 	ft_strdel(&com);
 	free_her(temp);
