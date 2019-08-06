@@ -6,11 +6,27 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 09:31:41 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/06 09:54:56 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+char			*do_path(char *bin, char *com)
+{
+	char		*temp;
+	char		*path;
+
+	if (ft_strstr(bin, com) != NULL)
+			path = ft_strdup(com);
+	else
+	{
+		temp = ft_strjoin(bin, "/");
+		path = ft_strjoin(temp, com);
+		ft_strdel(&temp);
+	}
+	return (path);
+}
 
 char			*get_path(char *com)
 {
@@ -26,14 +42,7 @@ char			*get_path(char *com)
 	ft_strdel(&temp);
 	while (bin && bin[++i])
 	{
-		if (ft_strstr(bin[i], com) != NULL)
-			path = ft_strdup(com);
-		else
-		{
-			temp = ft_strjoin(bin[i], "/");
-			path = ft_strjoin(temp, com);
-			ft_strdel(&temp);
-		}
+		path = do_path(bin[i], com);
 		if (lstat(path, &info) == -1)
 			free(path);
 		else
