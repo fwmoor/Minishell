@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 19:31:52 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/08 14:56:18 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,21 @@ char			*get_path(char *com)
 	return (NULL);
 }
 
-int				exec_sys(char *com)
+int				exec_sys(char **coms)
 {
 	pid_t		pid;
 	char		*path;
-	char		**temp;
 
-	temp = remove_quotes(com);
-	path = get_path(temp[0]);
+	path = get_path(coms[0]);
 	if (path != NULL)
 	{
 		signal(SIGINT, proc_signal_handler);
 		if (!(pid = fork()))
-			execve(path, temp, g_env);
+			execve(path, coms, g_env);
 		wait(&pid);
 	}
 	else
-		ft_printf("minishell: command not found: %s\n", com);
+		ft_printf("minishell: command not found: %s\n", coms[0]);
 	free(path);
-	ft_strdel(&com);
-	free_her(temp);
 	return (1);
 }

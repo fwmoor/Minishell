@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 15:39:00 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/08 14:38:13 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			check_cd(char *dir);
 int			check_bin(char *arg);
 void		pop_env(char **env);
 int			exec_echo(char **arg);
-int			exec_sys(char *com);
+int			exec_sys(char **coms);
 int			main(int ac, char **av, char **env);
 int			exec_args(char **commands);
 int			exec_cd(char **arg);
