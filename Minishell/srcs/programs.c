@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/08 14:53:55 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/08 23:08:08 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,26 @@ int			check_builtins(char **coms)
 int			exec_args(char **coms)
 {
 	int		i;
+	int		j;
 	char	**args;
 
 	i = 0;
 	while (coms[i])
 	{
 		args = remove_quotes(coms[i]);
-		if (check_builtins(args) == -1)
+		j = check_builtins(args);
+		if (j == -1)
 		{
 			free_her(args);
 			ft_strdel(&coms[i]);
 			return (0);
 		}
-		else
+		else if (j == 0)
 			exec_sys(args);
 		free_her(args);
 		ft_strdel(&coms[i]);
 		i++;
+		ft_putchar('\n');
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/08 14:38:13 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/08 23:19:12 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <readline/readline.h>
 
 # define C_DEF "\033[0m"
-# define C_GREEN "\033[1;32m"
+# define C_GRE "\033[1;32m"
 # define C_BLUE "\033[1;34m"
 
 char		**g_env;
