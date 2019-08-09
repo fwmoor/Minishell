@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/08 14:56:18 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 15:53:36 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,30 @@ char			*get_path(char *com)
 	return (NULL);
 }
 
-int				exec_sys(char **coms)
+void			sys_call(char **coms, char *path)
 {
 	pid_t		pid;
+
+	signal(SIGINT, proc_signal_handler);
+	pid = fork();
+	if (!pid)
+	{
+		if (execve(path, coms, g_env) == -1)
+			ft_printf("minishell: premission denied: %s\n", path);
+	}
+	else if (pid < 0)
+		ft_printf("minishell: unable to fork process: %d\n", pid);
+	else
+		wait(&pid);
+}
+
+int				exec_sys(char **coms)
+{
 	char		*path;
 
 	path = get_path(coms[0]);
 	if (path != NULL)
-	{
-		signal(SIGINT, proc_signal_handler);
-		if (!(pid = fork()))
-			execve(path, coms, g_env);
-		wait(&pid);
-	}
+		sys_call(coms, path);
 	else
 		ft_printf("minishell: command not found: %s\n", coms[0]);
 	free(path);
