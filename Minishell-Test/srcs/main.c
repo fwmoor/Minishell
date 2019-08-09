@@ -6,11 +6,19 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 17:05:08 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 17:12:07 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void			free_glob(void)
+{
+	free(e_nl);
+	free(m_lines);
+	free(c_con);
+	free(s_path);
+}
 
 char			*end_quote(char *str)
 {
@@ -67,6 +75,8 @@ void			get_config(int ac, char **av)
 				e_nl = ft_strdup(ft_strstr(line, "ENDNL=") + 6);
 			if (ft_strnequ(line, "MULTILINE=", 10))
 				m_lines = ft_strdup(ft_strstr(line, "MULTILINE=") + 10);
+			if (ft_strnequ(line, "PATH=", 5))
+				s_path = ft_strdup(ft_strstr(line, "PATH=") + 5);
 			free(line);
 		}
 }
@@ -93,6 +103,6 @@ int				main(int ac, char **av, char **env)
 		free(commands);
 		check_nl(e_nl);
 	}
-	free(c_con);
+	free_glob();
 	free_her(g_env);
 }
