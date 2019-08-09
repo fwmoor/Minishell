@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 17:11:31 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 21:15:18 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void			get_dir_path(void)
 	char		buf[4097];
 
 	getcwd(buf, 4096);
-	check_colour(c_con);
-	if (ft_strequ(s_path, "True"))
+	check_colour(con_arr[0]);
+	if (ft_strequ(con_arr[3], "True"))
 	{
 		if (ft_strcmp(buf, "/"))
 		{
@@ -96,7 +96,7 @@ void			get_dir_path(void)
 		}
 		else
 			ft_printf("%C  /", 0xf1bb);
-		check_nl(m_lines);
+		check_nl(con_arr[2]);
 	}
 	ft_putstr("$>");
 	ft_putstr(C_DEF);

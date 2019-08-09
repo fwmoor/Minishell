@@ -6,19 +6,11 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 17:12:07 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 21:18:14 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void			free_glob(void)
-{
-	free(e_nl);
-	free(m_lines);
-	free(c_con);
-	free(s_path);
-}
 
 char			*end_quote(char *str)
 {
@@ -65,18 +57,18 @@ void			get_config(int ac, char **av)
 	(void)av;
 	fd = open("config/config", O_RDONLY);
 	if (fd == -1)
-		c_con = ft_strdup("Default");
+		con_arr[0] = ft_strdup("Default");
 	else
 		while (get_next_line(fd, &line) > 0)
 		{
 			if (ft_strnequ(line, "COLOUR=", 7))
-				c_con = ft_strdup(ft_strstr(line, "COLOUR=") + 7);
+				con_arr[0] = ft_strdup(ft_strstr(line, "COLOUR=") + 7);
 			if (ft_strnequ(line, "ENDNL=", 6))
-				e_nl = ft_strdup(ft_strstr(line, "ENDNL=") + 6);
+				con_arr[1] = ft_strdup(ft_strstr(line, "ENDNL=") + 6);
 			if (ft_strnequ(line, "MULTILINE=", 10))
-				m_lines = ft_strdup(ft_strstr(line, "MULTILINE=") + 10);
+				con_arr[2] = ft_strdup(ft_strstr(line, "MULTILINE=") + 10);
 			if (ft_strnequ(line, "PATH=", 5))
-				s_path = ft_strdup(ft_strstr(line, "PATH=") + 5);
+				con_arr[3] = ft_strdup(ft_strstr(line, "PATH=") + 5);
 			free(line);
 		}
 }
@@ -101,8 +93,7 @@ int				main(int ac, char **av, char **env)
 		free(line);
 		i = exec_args(commands);
 		free(commands);
-		check_nl(e_nl);
+		check_nl(con_arr[1]);
 	}
-	free_glob();
 	free_her(g_env);
 }

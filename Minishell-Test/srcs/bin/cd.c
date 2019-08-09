@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 08:32:48 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 21:05:35 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,17 @@ int				old_cd(void)
 	old = get_env("OLDPWD=");
 	home = get_env("HOME=");
 	chdir(old);
-	ret = ft_strdup(ft_strstr(old, home) + ft_strlen(home));
-	ft_printf(C_BLUE"~%s\n"C_DEF, ret);
+	if (!ft_strequ(old, "/"))
+	{
+		ret = ft_strdup(ft_strstr(old, home) + ft_strlen(home));
+		ft_printf("~%s\n", ret);
+		free(ret);
+	}
+	else
+		ft_putendl("/");
 	setenv_var("OLDPWD", cur);
 	free(home);
 	free(old);
-	free(ret);
 	return (0);
 }
 

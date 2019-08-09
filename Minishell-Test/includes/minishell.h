@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 17:09:03 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 21:12:20 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@
 # define C_CYAN "\033[1;36m"
 # define C_MAGENTA "\033[1;35m"
 
-char		*e_nl;
-char		*m_lines;
-char		*c_con;
-char		*s_path;
+char		*con_arr[4];
 char		**g_env;
 int			get_envind(char *key);
 void		check_colour(char *str);
