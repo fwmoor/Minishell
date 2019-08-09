@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/08 23:08:08 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 08:39:15 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int			exec_args(char **coms)
 		free_her(args);
 		ft_strdel(&coms[i]);
 		i++;
-		ft_putchar('\n');
 	}
 	return (1);
 }

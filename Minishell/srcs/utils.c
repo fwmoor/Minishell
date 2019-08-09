@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/08 23:34:27 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 08:43:40 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,14 @@ void			get_dir_path(void)
 	if (ft_strcmp(buf, "/"))
 	{
 		home = get_env("HOME=");
-		//ft_printf(C_GRE"%C  ", 0xf07c); Folder
-		//ft_printf(C_GRE"%C  ", 0xf015); Home
+		ft_printf(C_GRE"%C  ", (ft_strequ(home, buf) ? 0xf015 : 0xf07b));
+		setenv_var("PWD", buf);
 		ft_printf(C_GRE"~%s\n$>"C_DEF, ft_strstr(buf, home) + ft_strlen(home));
 		free(home);
 	}
 	else
-		ft_printf(C_GRE"~/$>"C_DEF);
+	{
+		ft_printf(C_GRE"%C  ", 0xf1bb);
+		ft_printf(C_GRE"~\n$>"C_DEF);
+	}
 }
