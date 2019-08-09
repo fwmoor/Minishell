@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 08:43:40 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/09 08:49:22 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ void			get_dir_path(void)
 	else
 	{
 		ft_printf(C_GRE"%C  ", 0xf1bb);
-		ft_printf(C_GRE"~\n$>"C_DEF);
+		ft_printf(C_GRE"/\n$>"C_DEF);
 	}
 }
