@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 21:05:35 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/10 09:25:54 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int				home_cd(void)
 	getcwd(cur, 4096);
 	home = get_env("HOME=");
 	chdir(home);
-	setenv_var("OLDPWD", cur);
 	ft_strdel(&home);
+	setenv_var("OLDPWD", cur);
 	return (0);
 }
 
@@ -92,10 +92,10 @@ int				exec_cd(char **dirs)
 	tru = 1;
 	test = check_cd(dirs[1]);
 	getcwd(cur, 4096);
-	if (test > 1)
-		tru = (test == 2) ? old_cd() : root_cd();
-	else if (test == 1)
-		tru = home_cd();
+	if (test > 2)
+		tru = (test == 3) ? root_cd() : tilda_cd(dirs[1]);
+	else if (test > 0)
+		tru = (test == 1) ? home_cd() : old_cd();
 	else if (ft_strchr(dirs[1], '/'))
 		tru = multi_cd(dirs[1]);
 	else

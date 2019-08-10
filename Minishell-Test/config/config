@@ -1,4 +1,5 @@
-//COLOUR=Blue
-//PATH=True
-//ENDNL=True
-//MULTILINE=True
+COLOUR=Blue
+PATH=True
+ENDNL=True
+MULTILINE=True
+CMDLINES=True

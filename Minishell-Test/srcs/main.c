@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 21:18:14 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/10 09:39:00 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void			get_config(int ac, char **av)
 				con_arr[2] = ft_strdup(ft_strstr(line, "MULTILINE=") + 10);
 			if (ft_strnequ(line, "PATH=", 5))
 				con_arr[3] = ft_strdup(ft_strstr(line, "PATH=") + 5);
+			if (ft_strnequ(line, "CMDLINES=", 9))
+				con_arr[4] = ft_strdup(ft_strstr(line, "CMDLINES=") + 9);
 			free(line);
 		}
 }
@@ -93,7 +95,8 @@ int				main(int ac, char **av, char **env)
 		free(line);
 		i = exec_args(commands);
 		free(commands);
-		check_nl(con_arr[1]);
+		if (!ft_strequ(con_arr[4], "True"))
+			check_nl(con_arr[1]);
 	}
 	free_her(g_env);
 }
