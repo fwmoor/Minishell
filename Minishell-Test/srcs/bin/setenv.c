@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/10 09:36:19 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 07:33:45 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int				exec_env(void)
 	i = 0;
 	while (g_env[i])
 		ft_putendl(g_env[i++]);
-	check_nl(con_arr[4]);
 	return (1);
 }
 

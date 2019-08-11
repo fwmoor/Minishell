@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/10 09:36:56 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 07:30:09 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,10 @@ int				exec_sys(char **coms)
 	char		*path;
 
 	path = get_path(coms[0]);
-	if (path != NULL)
-	{
+	if (path != NULL && coms[0][0] != '~')
 		sys_call(coms, path);
-		check_nl(con_arr[4]);
-	}
+	else if (coms[0][0] == '~')
+		tilda_cd(coms[0]);
 	else
 		ft_printf("minishell: command not found: %s\n", coms[0]);
 	free(path);

@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/10 09:35:50 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 07:35:47 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int			check_builtins(char **coms)
 		return (exec_echo(coms));
 	else if (ft_strequ(coms[0], "env"))
 		return (exec_env());
+	else if (ft_strequ(coms[0], "help"))
+		return (exec_help());
 	else
 		return (0);
 }

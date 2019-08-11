@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:49:55 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 09:03:52 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/11 08:03:47 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void				ft_putchar(char c);
 void				ft_strclr(char *s);
 void				ft_memdel(void **ap);
 void				ft_strdel(char **as);
+void				free_her(char **dirs);
 void				*ft_memalloc(size_t n);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);

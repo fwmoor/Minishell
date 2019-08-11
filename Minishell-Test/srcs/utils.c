@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 21:15:18 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 15:44:46 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,30 @@ char			**remove_quotes(char *str)
 	return (ret);
 }
 
-void			free_her(char **dirs)
+int				tilda_cd(char *dirs)
 {
 	int			i;
+	char		cur[4097];
+	char		*home;
+	char		**multi;
 
-	i = 0;
-	while (dirs[i])
-		ft_strdel(&dirs[i++]);
-	free(dirs);
+	i = 1;
+	getcwd(cur, 4096);
+	home = get_env("HOME=");
+	chdir(home);
+	free(home);
+	multi = ft_strsplit(dirs, '/');
+	while (multi[i])
+		if ((chdir(multi[i++])) == -1)
+		{
+			ft_printf("cd: no such file or directory: %s\n", dirs);
+			free_her(multi);
+			chdir(cur);
+			return (0);
+		}
+	setenv_var("OLDPWD", cur);
+	free_her(multi);
+	return (0);
 }
 
 char			*get_env(char *str)
