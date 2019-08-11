@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:09:51 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 08:00:30 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 16:12:23 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,52 @@ int			exec_help(void)
 	return (1);	
 }
 
+int			print_echo(char *print)
+{
+	int		err;
+	char	*ret;
+	char	*temp;
+
+	err = 0;
+	if (print[0] == '$')
+	{
+		temp = ft_strdup(print + 1);
+		temp = ft_strcat(temp, "=");
+		if ((ret = get_env(temp)) != NULL)
+		{
+			ft_putstr(ret);
+			free(ret);
+		}
+		else
+			err = 1;
+		free(temp);
+	}
+	else
+		ft_putstr(print);
+	return (err);
+}
+
 int			exec_echo(char **print)
 {
 	int		i;
 	int		tru;
+	int		err;
 
 	i = 1;
+	err = 0;
 	tru = (ft_strequ(print[i], "-n")) ? 1 : 0;
 	i += tru;
 	if (!print[1])
-	{
 		ft_putchar('\n');
-		return (1);
-	}
 	while (print[i])
 	{
-		ft_putstr(print[i]);
+		err = print_echo(print[i]);
 		if (print[i][ft_strlen(print[i]) - 1] != '\n')
 			tru = 0;
 		i++;
 		if (print[i])
 			ft_putchar(' ');
-		if (!tru && !print[i])
+		if (!tru && !print[i] && !err)
 			ft_putchar('\n');
 	}
 	return (1);
