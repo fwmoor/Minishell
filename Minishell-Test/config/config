@@ -1,18 +1,26 @@
+# __   __  ___   __    _  ___   _______  __   __  _______  ___      ___     
+#|  |_|  ||   | |  |  | ||   | |       ||  | |  ||       ||   |    |   |    
+#|       ||   | |   |_| ||   | |  _____||  |_|  ||    ___||   |    |   |    
+#|       ||   | |       ||   | | |_____ |       ||   |___ |   |    |   |    
+#|       ||   | |  _    ||   | |_____  ||       ||    ___||   |___ |   |___ 
+#| ||_|| ||   | | | |   ||   |  _____| ||   _   ||   |___ |       ||       |
+#|_|   |_||___| |_|  |__||___| |_______||__| |__||_______||_______||_______|
+
 #MINISHELL CONFIG FILE
 #Lines starting with a '#' are ignored.
 
 #COLOUR changes the colour of teminal text. User input is always default.
 #COLOUR={Red, Green, Yellow, Blue, Magenta, Cyan}. Anything else with set colour to default.
-#COLOUR=Yellow
+COLOUR=Yellow
 
 #PATH displays the path in which the user is currently. Colour is affected by the COLOUR variable.
 #PATH=True. Anything else will set path to False.
-#PATH=True
+PATH=True
 
 #ENDNL cause the shell to leave a line open between prompts.
 #ENDNL=True. Anything else will set endnl to False.
-#ENDNL=True
+ENDNL=True
 
 #MULTILINE cause the shell to split the prompt into two. The top line being the path and the bottom line being the prompt.
 #MULTILINE=True. Anything else will se multiline to False.
-#MULTILINE=True
+MULTILINE=True

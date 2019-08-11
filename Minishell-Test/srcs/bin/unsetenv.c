@@ -6,18 +6,28 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 11:56:08 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 16:59:44 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 16:46:22 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int			unsetenv_var(int key_ind)
+int				exec_env(void)
 {
-	int		i;
-	int		j;
-	int		len;
-	char	**temp;
+	int			i;
+
+	i = 0;
+	while (g_env[i])
+		ft_putendl(g_env[i++]);
+	return (1);
+}
+
+int				unsetenv_var(int key_ind)
+{
+	int			i;
+	int			j;
+	int			len;
+	char		**temp;
 
 	i = 0;
 	j = 0;
@@ -40,10 +50,10 @@ int			unsetenv_var(int key_ind)
 	return (1);
 }
 
-int			exec_unsetenv(char **com)
+int				exec_unsetenv(char **com)
 {
-	int		i;
-	int		key_ind;
+	int			i;
+	int			key_ind;
 
 	i = 1;
 	if (!(com[1]))

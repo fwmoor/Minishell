@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 16:26:05 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 20:01:59 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void			get_config(int ac, char **av)
 {
 	int			fd;
 	char		*line;
+	char		**cons;
 
 	(void)ac;
 	(void)av;
@@ -60,14 +61,19 @@ void			get_config(int ac, char **av)
 	if (fd != -1)
 		while (get_next_line(fd, &line) > 0)
 		{
-			if (ft_strnequ(line, "COLOUR=", 7))
-				con_arr[0] = ft_strdup(ft_strstr(line, "COLOUR=") + 7);
-			if (ft_strnequ(line, "ENDNL=", 6))
-				con_arr[1] = ft_strdup(ft_strstr(line, "ENDNL=") + 6);
-			if (ft_strnequ(line, "MULTILINE=", 10))
-				con_arr[2] = ft_strdup(ft_strstr(line, "MULTILINE=") + 10);
-			if (ft_strnequ(line, "PATH=", 5))
-				con_arr[3] = ft_strdup(ft_strstr(line, "PATH=") + 5);
+			if (line[0] != '#' && line)
+			{
+				cons = ft_strsplit(line, '=');
+				if (ft_strequ(cons[0], "COLOUR"))
+					con_arr[0] = ft_strdup(cons[1]);
+				if (ft_strequ(cons[0], "ENDNL"))
+					con_arr[1] = ft_strdup(cons[1]);
+				if (ft_strequ(cons[0], "MULTILINE"))
+					con_arr[2] = ft_strdup(cons[1]);
+				if (ft_strequ(cons[0], "PATH"))
+					con_arr[3] = ft_strdup(cons[1]);
+				free_her(cons);
+			}
 			free(line);
 		}
 }
@@ -92,7 +98,7 @@ int				main(int ac, char **av, char **env)
 		free(line);
 		i = exec_args(commands);
 		free(commands);
-		check_nl(con_arr[1]);
+		(i > 0) ? check_nl(con_arr[1]) : 0;
 	}
 	free_her(g_env);
 }

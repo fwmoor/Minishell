@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 07:30:09 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 20:15:29 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char			*get_path(char *com)
 	return (NULL);
 }
 
-void			sys_call(char **coms, char *path)
+int				sys_call(char **coms, char *path)
 {
 	pid_t		pid;
 
@@ -80,19 +80,33 @@ void			sys_call(char **coms, char *path)
 		ft_printf("minishell: unable to fork process: %d\n", pid);
 	else
 		wait(&pid);
+	return (1);
 }
 
 int				exec_sys(char **coms)
 {
+	char		*temp;
 	char		*path;
+	struct stat	info;
 
 	path = get_path(coms[0]);
 	if (path != NULL && coms[0][0] != '~')
-		sys_call(coms, path);
+		return(sys_call(coms, path));
 	else if (coms[0][0] == '~')
+	{
+		free(path);
 		tilda_cd(coms[0]);
+	}
+	if (lstat(coms[0], &info) != -1)
+	{
+		if (S_ISREG(info.st_mode))
+		{
+			temp = ft_strdup(coms[0]);
+			sys_call(coms, temp);
+			free(temp);
+		}
+	}
 	else
 		ft_printf("minishell: command not found: %s\n", coms[0]);
-	free(path);
 	return (1);
 }
