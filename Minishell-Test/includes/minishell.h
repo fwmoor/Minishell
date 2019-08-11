@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 08:09:06 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 16:23:33 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int			exec_help(void);
 int			tilda_cd(char *dirs);
 int			check_cd(char *dir);
 int			exec_cd(char **arg);
-int			check_bin(char *arg);
 int			get_envind(char *key);
 int			exec_echo(char **arg);
 int			exec_sys(char **coms);
@@ -43,7 +42,6 @@ int			exec_unsetenv(char **arg);
 int			exec_args(char **commands);
 int			setenv_var(char *key, char *val);
 int			main(int ac, char **av, char **env);
-char		check_quote(char *str);
 char		*get_env(char *str);
 char		**remove_quotes(char *dirs);
 void		get_dir_path();

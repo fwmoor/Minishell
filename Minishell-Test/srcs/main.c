@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 15:46:54 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 16:26:05 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char			*end_quote(char *str)
 		++ptr;
 		if ((ptr = ft_strchr(ptr, '"')) == NULL)
 		{
+			check_colour(con_arr[0]);
 			str2 = readline("dquote$>"C_DEF);
 			temp = ft_strjoin(str, "\n");
 			ft_strdel(&str);
