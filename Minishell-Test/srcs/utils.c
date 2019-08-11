@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 15:44:46 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 20:18:00 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int				tilda_cd(char *dirs)
 		}
 	setenv_var("OLDPWD", cur);
 	free_her(multi);
-	return (0);
+	return (1);
 }
 
 char			*get_env(char *str)

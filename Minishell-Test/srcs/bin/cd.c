@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 07:32:06 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 20:18:47 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int				multi_cd(char *dirs)
 			ft_printf("cd: no such file or directory: %s\n", dirs);
 			free_her(multi);
 			chdir(cur);
-			return (0);
+			return (1);
 		}
 	setenv_var("OLDPWD", cur);
 	free_her(multi);
-	return (0);
+	return (1);
 }
 
 int				old_cd(void)
@@ -56,7 +56,7 @@ int				old_cd(void)
 	setenv_var("OLDPWD", cur);
 	free(home);
 	free(old);
-	return (0);
+	return (1);
 }
 
 int				home_cd(void)
@@ -69,7 +69,7 @@ int				home_cd(void)
 	chdir(home);
 	ft_strdel(&home);
 	setenv_var("OLDPWD", cur);
-	return (0);
+	return (1);
 }
 
 int				root_cd(void)
@@ -79,7 +79,7 @@ int				root_cd(void)
 	getcwd(cur, 4096);
 	chdir("/");
 	setenv_var("OLDPWD", cur);
-	return (0);
+	return (1);
 }
 
 int				exec_cd(char **dirs)
@@ -89,7 +89,7 @@ int				exec_cd(char **dirs)
 	char		*ret;
 	char		cur[4097];
 
-	tru = 1;
+	tru = 0;
 	test = check_cd(dirs[1]);
 	getcwd(cur, 4096);
 	if (test > 2)
@@ -100,7 +100,7 @@ int				exec_cd(char **dirs)
 		tru = multi_cd(dirs[1]);
 	else
 		ret = ft_strdup(dirs[1]);
-	if (tru == 1)
+	if (tru == 0)
 	{
 		if ((chdir(ret)) == -1)
 			error_cd(ret);

@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 20:15:29 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 20:18:10 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int				exec_sys(char **coms)
 	else if (coms[0][0] == '~')
 	{
 		free(path);
-		tilda_cd(coms[0]);
+		return(tilda_cd(coms[0]));
 	}
 	if (lstat(coms[0], &info) != -1)
 	{
