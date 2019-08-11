@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 20:01:59 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 20:30:35 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ void			sigint_handler(int signo)
 	}
 }
 
+void			zsh_level(void)
+{
+	char		*temp;
+
+	temp = get_env("SHLVL=");
+	setenv_var("SHLVL", ft_itoa(ft_atoi(temp) + 1));
+	free(temp);
+}
+
 void			get_config(int ac, char **av)
 {
 	int			fd;
@@ -87,6 +96,7 @@ int				main(int ac, char **av, char **env)
 	i = 1;
 	get_config(ac, av);
 	pop_env(env);
+	zsh_level();
 	while (i)
 	{
 		get_dir_path(g_env);
