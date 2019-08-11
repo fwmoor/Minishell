@@ -1,15 +1,18 @@
-# COLOUR changes the colour of teminal text. User input is always default.
-# COLOUR={Red, Green, Yellow, Blue, Magenta, Cyan}. Anything else with set colour to default.
-//COLOUR=Yellow
+#MINISHELL CONFIG FILE
+#Lines starting with a '#' are ignored.
 
-# PATH displays the path in which the user is currently. Colour is affected by the COLOUR variable.
-# PATH=True. Anything else will set path to False.
-//PATH=True
+#COLOUR changes the colour of teminal text. User input is always default.
+#COLOUR={Red, Green, Yellow, Blue, Magenta, Cyan}. Anything else with set colour to default.
+#COLOUR=Yellow
 
-# ENDNL cause the shell to leave a line open between prompts.
-# ENDNL=True. Anything else will set endnl to False.
-//ENDNL=True
+#PATH displays the path in which the user is currently. Colour is affected by the COLOUR variable.
+#PATH=True. Anything else will set path to False.
+#PATH=True
 
-# MULTILINE cause the shell to split the prompt into two. The top line being the path and the bottom line being the prompt.
-# MULTILINE=True. Anything else will se multiline to False.
-//MULTILINE=True
+#ENDNL cause the shell to leave a line open between prompts.
+#ENDNL=True. Anything else will set endnl to False.
+#ENDNL=True
+
+#MULTILINE cause the shell to split the prompt into two. The top line being the path and the bottom line being the prompt.
+#MULTILINE=True. Anything else will se multiline to False.
+#MULTILINE=True
