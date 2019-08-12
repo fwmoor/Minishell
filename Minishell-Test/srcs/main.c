@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 13:47:08 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/12 15:14:38 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char			*end_quote(char *str, char c)
 	ptr = str;
 	while ((ptr = ft_strchr(ptr, c)) != NULL)
 	{
-		++ptr;
-		if ((ptr = ft_strchr(ptr, c)) == NULL)
+		//++ptr;
+		if ((ptr = ft_strchr(++ptr, c)) == NULL)
 		{
 			check_colour(g_arr[0]);
 			if (c == '\'')
@@ -71,7 +71,7 @@ void			get_config(int ac, char **av)
 
 	(void)ac;
 	(void)av;
-	fd = open("config/config", O_RDONLY);
+	fd = open("./includes/config/config", O_RDONLY);
 	if (fd != -1)
 		while (get_next_line(fd, &line) > 0)
 		{
