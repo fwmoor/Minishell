@@ -3,47 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   unsetenv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 11:56:08 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/05 16:59:44 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 12:11:39 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int			unsetenv_var(int key_ind)
+int				exec_env(void)
 {
-	int		i;
-	int		j;
-	int		len;
-	char	**temp;
+	int			i;
 
 	i = 0;
-	j = 0;
-	len = 0;
-	while (g_env[len])
-		len++;
-	temp = (char **)malloc(sizeof(char *) * (len + 1));
-	temp[len] = 0;
-	if (temp)
+	while (g_env[i])
 	{
-		while (i < len && g_env[i])
-		{
-			if (i != key_ind)
-				temp[j++] = ft_strdup(g_env[i]);
-			i++;
-		}
-		free_her(g_env);
-		g_env = temp;
+		ft_putendl(g_env[i]);
+		i++;
 	}
 	return (1);
 }
 
-int			exec_unsetenv(char **com)
+int				start_with(char *check, char *val)
+{
+	int			i;
+	int			len;
+
+	i = 0;
+	len = ft_strlen(val);
+	while (i < len)
+	{
+		if (check[i] != val[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int				unsetenv_var(char *key)
 {
 	int		i;
-	int		key_ind;
+	int		j;
+	int		len;
+	char	*key_temp;
+	char	**new_env;
+
+	i = 0;
+	j = 0;
+	len = ft_tdlen(g_env);
+	key_temp = ft_strjoin(key, "=");
+	new_env = (char **)malloc(sizeof(char *) * (--len + 1));
+	new_env[len] = 0;
+	while (i < len && g_env[j])
+	{
+		if (!start_with(g_env[j], key_temp))
+		{
+			new_env[i] = ft_strdup(g_env[j]);
+			i++;
+		}
+		j++;
+	}
+	free(key_temp);
+	free_her(g_env);
+	g_env = new_env;
+	return (1);
+}
+
+int				exec_unsetenv(char **com)
+{
+	int			i;
+	int			key_ind;
 
 	i = 1;
 	if (!(com[1]))
@@ -52,6 +82,6 @@ int			exec_unsetenv(char **com)
 		ft_putstr("unsetenv: too many arguments\n");
 	else if (com[1])
 		if ((key_ind = get_envind(com[1])) != -1)
-			i = unsetenv_var(key_ind);
+			i = unsetenv_var(com[1]);
 	return (i);
 }

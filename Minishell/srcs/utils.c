@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 08:49:22 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 14:35:41 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,55 @@ void			pop_env(char **env)
 			i--;
 		}
 	}
+	zsh_level();
 }
 
-char			**remove_quotes(char *str)
+char			**remove_quotes(char *str, char c)
 {
 	int			i;
 	char		**ret;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && c != ' ')
 	{
-		if (str[i] == '"')
+		if (str[i] == c)
 		{
 			i++;
-			while (str[i] != '"')
+			while (str[i] != c)
 				i++;
 		}
 		if (str[i] == ' ' || str[i] == '\t')
-			str[i] = '"';
+			str[i] = c;
 		i++;
 	}
-	ret = ft_strsplit(str, '"');
+	ret = ft_strsplit(str, c);
 	return (ret);
 }
 
-void			free_her(char **dirs)
+int				tilda_cd(char *dirs)
 {
 	int			i;
+	char		cur[4097];
+	char		*home;
+	char		**multi;
 
-	i = 0;
-	while (dirs[i])
-		ft_strdel(&dirs[i++]);
-	free(dirs);
+	i = 1;
+	getcwd(cur, 4096);
+	home = get_env("HOME=");
+	chdir(home);
+	free(home);
+	multi = ft_strsplit(dirs, '/');
+	while (multi[i])
+		if ((chdir(multi[i++])) == -1)
+		{
+			ft_printf("cd: no such file or directory: %s\n", dirs);
+			free_her(multi);
+			chdir(cur);
+			return (0);
+		}
+	setenv_var("OLDPWD", cur);
+	free_her(multi);
+	return (1);
 }
 
 char			*get_env(char *str)
@@ -83,17 +100,21 @@ void			get_dir_path(void)
 	char		buf[4097];
 
 	getcwd(buf, 4096);
-	if (ft_strcmp(buf, "/"))
+	check_colour(g_arr[0]);
+	if (ft_strequ(g_arr[3], "True"))
 	{
-		home = get_env("HOME=");
-		ft_printf(C_GRE"%C  ", (ft_strequ(home, buf) ? 0xf015 : 0xf07b));
-		setenv_var("PWD", buf);
-		ft_printf(C_GRE"~%s\n$>"C_DEF, ft_strstr(buf, home) + ft_strlen(home));
-		free(home);
+		if (ft_strcmp(buf, "/"))
+		{
+			home = get_env("HOME=");
+			setenv_var("PWD", buf);
+			ft_printf("%C ", (ft_strequ(home, buf) ? 0xf015 : 0xf07b));
+			ft_printf("~%s", ft_strstr(buf, home) + ft_strlen(home));
+			free(home);
+		}
+		else
+			ft_printf("%C /", 0xf1bb);
+		check_nl(g_arr[2]);
 	}
-	else
-	{
-		ft_printf(C_GRE"%C  ", 0xf1bb);
-		ft_printf(C_GRE"/\n$>"C_DEF);
-	}
+	ft_putstr("$>");
+	ft_putstr(C_DEF);
 }

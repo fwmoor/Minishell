@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 08:32:48 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/11 20:18:47 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int				multi_cd(char *dirs)
 			ft_printf("cd: no such file or directory: %s\n", dirs);
 			free_her(multi);
 			chdir(cur);
-			return (0);
+			return (1);
 		}
 	setenv_var("OLDPWD", cur);
 	free_her(multi);
-	return (0);
+	return (1);
 }
 
 int				old_cd(void)
@@ -45,13 +45,18 @@ int				old_cd(void)
 	old = get_env("OLDPWD=");
 	home = get_env("HOME=");
 	chdir(old);
-	ret = ft_strdup(ft_strstr(old, home) + ft_strlen(home));
-	ft_printf(C_BLUE"~%s\n"C_DEF, ret);
+	if (!ft_strequ(old, "/"))
+	{
+		ret = ft_strdup(ft_strstr(old, home) + ft_strlen(home));
+		ft_printf("~%s\n", ret);
+		free(ret);
+	}
+	else
+		ft_putendl("/");
 	setenv_var("OLDPWD", cur);
 	free(home);
 	free(old);
-	free(ret);
-	return (0);
+	return (1);
 }
 
 int				home_cd(void)
@@ -62,9 +67,9 @@ int				home_cd(void)
 	getcwd(cur, 4096);
 	home = get_env("HOME=");
 	chdir(home);
-	setenv_var("OLDPWD", cur);
 	ft_strdel(&home);
-	return (0);
+	setenv_var("OLDPWD", cur);
+	return (1);
 }
 
 int				root_cd(void)
@@ -74,7 +79,7 @@ int				root_cd(void)
 	getcwd(cur, 4096);
 	chdir("/");
 	setenv_var("OLDPWD", cur);
-	return (0);
+	return (1);
 }
 
 int				exec_cd(char **dirs)
@@ -84,18 +89,18 @@ int				exec_cd(char **dirs)
 	char		*ret;
 	char		cur[4097];
 
-	tru = 1;
+	tru = 0;
 	test = check_cd(dirs[1]);
 	getcwd(cur, 4096);
-	if (test > 1)
-		tru = (test == 2) ? old_cd() : root_cd();
-	else if (test == 1)
-		tru = home_cd();
+	if (test > 2)
+		tru = (test == 3) ? root_cd() : tilda_cd(dirs[1]);
+	else if (test > 0)
+		tru = (test == 1) ? home_cd() : old_cd();
 	else if (ft_strchr(dirs[1], '/'))
 		tru = multi_cd(dirs[1]);
 	else
 		ret = ft_strdup(dirs[1]);
-	if (tru == 1)
+	if (tru == 0)
 	{
 		if ((chdir(ret)) == -1)
 			error_cd(ret);

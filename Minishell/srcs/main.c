@@ -3,33 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 08:39:02 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 15:14:38 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char			*end_quote(char *str)
+char			*end_quote(char *str, char c)
 {
 	char		*ptr;
 	char		*temp;
 	char		*str2;
 
 	ptr = str;
-	while ((ptr = ft_strchr(ptr, '"')) != NULL)
+	while ((ptr = ft_strchr(ptr, c)) != NULL)
 	{
-		++ptr;
-		if ((ptr = ft_strchr(ptr, '"')) == NULL)
+		//++ptr;
+		if ((ptr = ft_strchr(++ptr, c)) == NULL)
 		{
-			str2 = readline(C_GRE"dquote$>"C_DEF);
+			check_colour(g_arr[0]);
+			if (c == '\'')
+				str2 = readline("quote$>"C_DEF);
+			else
+				str2 = readline("dquote$>"C_DEF);
 			temp = ft_strjoin(str, "\n");
 			ft_strdel(&str);
 			str = ft_strjoin(temp, str2);
-			ft_strdel(&str2);
-			ft_strdel(&temp);
+			delfunc_quote(str2, temp);
 			ptr = str;
 		}
 		else
@@ -48,29 +51,70 @@ void			sigint_handler(int signo)
 	}
 }
 
-int				main(int ac, char **av, char **env)
+void			zsh_level(void)
 {
-	int			i;
+	char		*temp;
+	char		*lvl;
+
+	temp = get_env("SHLVL=");
+	lvl = ft_itoa(ft_atoi(temp) + 1);
+	setenv_var("SHLVL", lvl);
+	free(temp);
+	free(lvl);
+}
+
+void			get_config(int ac, char **av)
+{
+	int			fd;
 	char		*line;
-	char		**commands;
+	char		**cons;
 
 	(void)ac;
 	(void)av;
+	fd = open("./includes/config/config", O_RDONLY);
+	if (fd != -1)
+		while (get_next_line(fd, &line) > 0)
+		{
+			if (line[0] != '#' && line)
+			{
+				cons = ft_strsplit(line, '=');
+				if (ft_strequ(cons[0], "COLOUR"))
+					g_arr[0] = ft_strdup(cons[1]);
+				if (ft_strequ(cons[0], "ENDNL"))
+					g_arr[1] = ft_strdup(cons[1]);
+				if (ft_strequ(cons[0], "MULTILINE"))
+					g_arr[2] = ft_strdup(cons[1]);
+				if (ft_strequ(cons[0], "PATH"))
+					g_arr[3] = ft_strdup(cons[1]);
+				free_her(cons);
+			}
+			free(line);
+		}
+}
+
+int				main(int ac, char **av, char **env)
+{
+	int			i;
+	char		c;
+	char		*line;
+	char		**commands;
+
 	i = 1;
-	system("clear");
+	get_config(ac, av);
 	pop_env(env);
 	while (i)
 	{
 		get_dir_path(g_env);
 		signal(SIGINT, sigint_handler);
 		line = readline(" ");
-		line = end_quote(line);
+		c = quote_thing(line);
+		if (c == '\'' || c == '"')
+			line = end_quote(line, c);
 		add_history(line);
 		commands = ft_strsplit(line, ';');
 		free(line);
-		i = exec_args(commands);
-		free(commands);
-		ft_putchar('\n');
+		i = exec_args(commands, c);
+		(i > 0) ? check_nl(g_arr[1]) : 0;
 	}
 	free_her(g_env);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   programs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/09 08:39:15 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 14:47:17 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int			check_builtins(char **coms)
 		return (exec_echo(coms));
 	else if (ft_strequ(coms[0], "env"))
 		return (exec_env());
+	else if (ft_strequ(coms[0], "help"))
+		return (exec_help());
 	else
 		return (0);
 }
 
-int			exec_args(char **coms)
+int			exec_args(char **coms, char c)
 {
 	int		i;
 	int		j;
@@ -39,7 +41,7 @@ int			exec_args(char **coms)
 	i = 0;
 	while (coms[i])
 	{
-		args = remove_quotes(coms[i]);
+		args = remove_quotes(coms[i], c);
 		j = check_builtins(args);
 		if (j == -1)
 		{
@@ -50,8 +52,8 @@ int			exec_args(char **coms)
 		else if (j == 0)
 			exec_sys(args);
 		free_her(args);
-		ft_strdel(&coms[i]);
 		i++;
 	}
+	free_her(coms);
 	return (1);
 }

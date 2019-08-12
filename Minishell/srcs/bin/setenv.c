@@ -6,29 +6,22 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/06 14:15:35 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/12 12:16:07 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int				exec_env(void)
-{
-	int			i;
-
-	i = 0;
-	while (g_env[i])
-		ft_putendl(g_env[i++]);
-	return (1);
-}
-
 int				get_envind(char *key)
 {
 	int			i;
 	char		*temp;
+	char		*temp_key;
 
 	i = 0;
-	temp = ft_strjoin(key, "=");
+	temp_key = (key[0] == '$') ? ft_strdup(key + 1) : ft_strdup(key);
+	temp = ft_strjoin(temp_key, "=");
+	free(temp_key);
 	while (g_env[i])
 	{
 		if (ft_strncmp(temp, g_env[i], ft_strlen(temp)) == 0)
@@ -42,19 +35,30 @@ int				get_envind(char *key)
 	return (-1);
 }
 
+char			*setting_var(char *key, char *val)
+{
+	char		*temp;
+	char		*key_temp;
+	char		*key_new;
+
+	temp = (key[0] == '$') ? ft_strdup(key + 1) : ft_strdup(key);
+	key_temp = ft_strjoin(temp, "=");
+	key_new = ft_strjoin(key_temp, val);
+	free(key_temp);
+	free(temp);
+	return (key_new);
+}
+
 void			setnew_env(char *key, char *val)
 {
 	int			i;
 	int			len;
-	char		*key_temp;
-	char		*key_new;
+	char		*t_key;
 	char		**temp;
 
 	i = 0;
 	len = 0;
-	while (g_env[len])
-		len++;
-	len++;
+	len = ft_tdlen(g_env) + 1;
 	temp = (char **)malloc(sizeof(char *) * (len + 1));
 	temp[len] = 0;
 	while (g_env[i])
@@ -63,11 +67,9 @@ void			setnew_env(char *key, char *val)
 		i++;
 	}
 	free_her(g_env);
-	key_temp = ft_strjoin(key, "=");
-	key_new = ft_strjoin(key_temp, val);
-	temp[i] = ft_strdup(key_new);
-	free(key_temp);
-	free(key_new);
+	t_key = setting_var(key, val);
+	temp[i] = ft_strdup(t_key);
+	free(t_key);
 	g_env = temp;
 }
 
@@ -75,15 +77,12 @@ int				setenv_var(char *key, char *val)
 {
 	int			i;
 	char		*temp;
-	char		*temp_key;
 
 	i = get_envind(key);
 	if (i != -1)
 	{
-		temp_key = ft_strjoin(key, "=");
-		temp = ft_strjoin(temp_key, val);
-		ft_strdel(&temp_key);
-		ft_strdel(&g_env[i]);
+		temp = setting_var(key, val);
+		free(g_env[i]);
 		g_env[i] = ft_strdup(temp);
 		ft_strdel(&temp);
 	}
