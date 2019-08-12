@@ -7,7 +7,7 @@ INCS = ./includes/minishell.h
 
 SRCS =	./srcs/main.c ./srcs/programs.c ./srcs/utils.c ./srcs/system.c \
 	./srcs/checks.c ./srcs/bin/cd.c ./srcs/bin/unsetenv.c ./srcs/bin/echo.c \
-	./srcs/bin/setenv.c
+	./srcs/bin/setenv.c ./srcs/extras.c
 
 FLAGS = -Wall -Werror -Wextra
 

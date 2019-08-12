@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:09:51 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 16:12:23 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 09:15:40 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			exec_help(void)
 	ft_printf("end on a new line.\n");
 	ft_printf("MULTILINE=x - Replace x with 'True' if you want your prompt");
 	ft_printf("to be split into two lines.\n"C_DEF);
-	return (1);	
+	return (1);
 }
 
 int			print_echo(char *print)

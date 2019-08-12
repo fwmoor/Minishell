@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 20:18:10 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 14:40:16 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int				sys_call(char **coms, char *path)
 		ft_printf("minishell: unable to fork process: %d\n", pid);
 	else
 		wait(&pid);
+	free(path);
 	return (1);
 }
 
@@ -91,22 +92,20 @@ int				exec_sys(char **coms)
 
 	path = get_path(coms[0]);
 	if (path != NULL && coms[0][0] != '~')
-		return(sys_call(coms, path));
+		return (sys_call(coms, path));
 	else if (coms[0][0] == '~')
 	{
 		free(path);
-		return(tilda_cd(coms[0]));
+		return (tilda_cd(coms[0]));
 	}
 	if (lstat(coms[0], &info) != -1)
 	{
 		if (S_ISREG(info.st_mode))
 		{
 			temp = ft_strdup(coms[0]);
-			sys_call(coms, temp);
-			free(temp);
+			return(sys_call(coms, temp));
 		}
 	}
-	else
-		ft_printf("minishell: command not found: %s\n", coms[0]);
+	ft_printf("minishell: command not found: %s\n", coms[0]);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 16:23:33 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 13:05:29 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define C_CYAN "\033[1;36m"
 # define C_MAGENTA "\033[1;35m"
 
-char		*con_arr[4];
+char		*g_arr[4];
 char		**g_env;
 
 int			exec_env(void);
@@ -39,15 +39,19 @@ int			exec_echo(char **arg);
 int			exec_sys(char **coms);
 int			exec_setenv(char **arg);
 int			exec_unsetenv(char **arg);
-int			exec_args(char **commands);
+int			exec_args(char **commands, char c);
 int			setenv_var(char *key, char *val);
 int			main(int ac, char **av, char **env);
+char		quote_thing(char *str);
 char		*get_env(char *str);
-char		**remove_quotes(char *dirs);
+char		**remove_quotes(char *dirs, char c);
 void		get_dir_path();
+void		zsh_level(void);
 void		check_nl(char *str);
 void		error_cd(char *dir);
 void		pop_env(char **env);
+void		dup_env(char **temp);
 void		check_colour(char *str);
+void		delfunc_quote(char *str2, char *temp);
 
 #endif

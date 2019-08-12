@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 09:12:16 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/12 14:35:41 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,28 @@ void			pop_env(char **env)
 			i--;
 		}
 	}
+	zsh_level();
 }
 
-char			**remove_quotes(char *str)
+char			**remove_quotes(char *str, char c)
 {
 	int			i;
 	char		**ret;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && c != ' ')
 	{
-		if (str[i] == '"')
+		if (str[i] == c)
 		{
 			i++;
-			while (str[i] != '"')
+			while (str[i] != c)
 				i++;
 		}
 		if (str[i] == ' ' || str[i] == '\t')
-			str[i] = '"';
+			str[i] = c;
 		i++;
 	}
-	ret = ft_strsplit(str, '"');
+	ret = ft_strsplit(str, c);
 	return (ret);
 }
 
@@ -99,21 +100,20 @@ void			get_dir_path(void)
 	char		buf[4097];
 
 	getcwd(buf, 4096);
-	check_colour(con_arr[0]);
-	if (ft_strequ(con_arr[3], "True"))
+	check_colour(g_arr[0]);
+	if (ft_strequ(g_arr[3], "True"))
 	{
 		if (ft_strcmp(buf, "/"))
 		{
 			home = get_env("HOME=");
 			setenv_var("PWD", buf);
-			ft_printf("%s  ", ft_strequ(home, buf) ? "\U0001F3E0" :
-			"\U0001F4C1");
+			ft_printf("%C ", (ft_strequ(home, buf) ? 0xf015 : 0xf07b));
 			ft_printf("~%s", ft_strstr(buf, home) + ft_strlen(home));
 			free(home);
 		}
 		else
-			ft_printf("%s  /", "\U0001F384");
-		check_nl(con_arr[2]);
+			ft_printf("%C /", 0xf1bb);
+		check_nl(g_arr[2]);
 	}
 	ft_putstr("$>");
 	ft_putstr(C_DEF);

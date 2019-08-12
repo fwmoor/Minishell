@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 14:35:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 08:11:37 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 09:16:06 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char			check_quote(char *str)
 		return ('"');
 	if ((ft_strchr(str, '\'')) != NULL)
 		return ('\'');
-	return ('\0');	
+	return ('\0');
 }
 
 void			error_cd(char *dir)

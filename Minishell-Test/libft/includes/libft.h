@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:49:55 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 08:03:47 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 12:09:03 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int					ft_isdigit(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_tdlen(char **arr);
 int					ft_atoi(const char *str);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strcmp(const char *s1, const char *s2);

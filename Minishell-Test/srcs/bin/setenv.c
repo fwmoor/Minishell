@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/11 17:02:25 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/08/12 12:16:07 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ void			setnew_env(char *key, char *val)
 
 	i = 0;
 	len = 0;
-	while (g_env[len])
-		len++;
-	len++;
+	len = ft_tdlen(g_env) + 1;
 	temp = (char **)malloc(sizeof(char *) * (len + 1));
 	temp[len] = 0;
 	while (g_env[i])
