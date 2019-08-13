@@ -1,4 +1,5 @@
 # Minishell
+![GIF](Minishell.gif)
 ## Well, aren't you curious -_-  
   
     
