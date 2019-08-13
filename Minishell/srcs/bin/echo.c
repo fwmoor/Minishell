@@ -6,13 +6,13 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:09:51 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 09:15:40 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 10:46:21 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int			exec_help(void)
+int				exec_help(void)
 {
 	ft_printf(C_GREEN"\n\nMINISHELL - HELP\n\n");
 	ft_printf("BASICS:\nAll normal commands work on our minishell.\n");
@@ -31,11 +31,34 @@ int			exec_help(void)
 	return (1);
 }
 
-int			print_echo(char *print)
+void			printer(char *str)
 {
-	int		err;
-	char	*ret;
-	char	*temp;
+	int			i;
+	int			i1;
+	int			i2;
+	char		c;
+
+	i = 0;
+	i1 = quote(str, '\'');
+	i2 = quote(str, '"');
+	if (i1 != -1 && i2 != -1)
+		c = (i1 < i2) ? '\'' : '"';
+	else if (i1 == -1 || i2 == -1)
+		c = (i1 == -1) ? '"' : '\'';
+	while (str[i])
+	{
+		if (str[i] == c)
+			i++;
+		else
+			ft_putchar(str[i++]);
+	}
+}
+
+int				print_echo(char *print)
+{
+	int			err;
+	char		*ret;
+	char		*temp;
 
 	err = 0;
 	if (print[0] == '$')
@@ -56,11 +79,11 @@ int			print_echo(char *print)
 	return (err);
 }
 
-int			exec_echo(char **print)
+int				exec_echo(char **print)
 {
-	int		i;
-	int		tru;
-	int		err;
+	int			i;
+	int			tru;
+	int			err;
 
 	i = 1;
 	err = 0;

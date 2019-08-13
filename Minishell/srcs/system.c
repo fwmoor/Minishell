@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 14:40:16 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 10:13:16 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int				exec_sys(char **coms)
 		if (S_ISREG(info.st_mode))
 		{
 			temp = ft_strdup(coms[0]);
-			return(sys_call(coms, temp));
+			return (sys_call(coms, temp));
 		}
 	}
 	ft_printf("minishell: command not found: %s\n", coms[0]);

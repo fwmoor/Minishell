@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 13:05:29 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 10:54:45 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,24 @@
 char		*g_arr[4];
 char		**g_env;
 
+int			quote(char *str, char c);
 int			exec_env(void);
 int			exec_help(void);
 int			tilda_cd(char *dirs);
 int			check_cd(char *dir);
-int			exec_cd(char **arg);
+int			exec_cd(char *arg);
 int			get_envind(char *key);
 int			exec_echo(char **arg);
 int			exec_sys(char **coms);
 int			exec_setenv(char **arg);
 int			exec_unsetenv(char **arg);
-int			exec_args(char **commands, char c);
+int			exec_args(char **commands);
+char		**splitthingy(char *com);
 int			setenv_var(char *key, char *val);
 int			main(int ac, char **av, char **env);
 char		quote_thing(char *str);
 char		*get_env(char *str);
-char		**remove_quotes(char *dirs, char c);
+char		*remove_quotes(char *dirs);
 void		get_dir_path();
 void		zsh_level(void);
 void		check_nl(char *str);

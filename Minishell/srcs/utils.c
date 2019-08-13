@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 14:35:41 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 10:32:15 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,34 @@ void			pop_env(char **env)
 	zsh_level();
 }
 
-char			**remove_quotes(char *str, char c)
+char			*remove_quotes(char *str)
 {
 	int			i;
-	char		**ret;
+	int			i1;
+	int			len = 0;
+	char		c;
+	char		*ret;
 
+	i = quote(str, '\'');
+	i1 = quote(str, '"');
+	if (i != -1 && i1 != -1)
+		c = (i < i1) ? '\'' : '"';
+	else if (i == -1 || i1 == -1)
+		c = (i == -1) ? '"' : '\'';
 	i = 0;
-	while (str[i] && c != ' ')
+	i1 = 0;
+	while (str[i])
+		if (str[i++] != c)
+			len++;
+	ret = ft_strnew(len);
+	i = 0;
+	while (str[i])
 	{
 		if (str[i] == c)
-		{
 			i++;
-			while (str[i] != c)
-				i++;
-		}
-		if (str[i] == ' ' || str[i] == '\t')
-			str[i] = c;
-		i++;
+		else
+			ret[i1++] = str[i++];
 	}
-	ret = ft_strsplit(str, c);
 	return (ret);
 }
 

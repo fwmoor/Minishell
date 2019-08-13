@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 15:14:38 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 10:33:33 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int				main(int ac, char **av, char **env)
 		add_history(line);
 		commands = ft_strsplit(line, ';');
 		free(line);
-		i = exec_args(commands, c);
+		i = exec_args(commands);
 		(i > 0) ? check_nl(g_arr[1]) : 0;
 	}
 	free_her(g_env);

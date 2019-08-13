@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 14:47:17 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 10:54:59 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			check_builtins(char **coms)
 	if (ft_strequ(coms[0], "exit"))
 		return (-1);
 	else if (ft_strequ(coms[0], "cd"))
-		return (exec_cd(coms));
+		return(exec_cd(coms[1]));
 	else if (ft_strequ(coms[0], "setenv"))
 		return (exec_setenv(coms));
 	else if (ft_strequ(coms[0], "unsetenv"))
@@ -32,7 +32,7 @@ int			check_builtins(char **coms)
 		return (0);
 }
 
-int			exec_args(char **coms, char c)
+int			exec_args(char **coms)
 {
 	int		i;
 	int		j;
@@ -41,7 +41,7 @@ int			exec_args(char **coms, char c)
 	i = 0;
 	while (coms[i])
 	{
-		args = remove_quotes(coms[i], c);
+		args = splitthingy(coms[i]);
 		j = check_builtins(args);
 		if (j == -1)
 		{
