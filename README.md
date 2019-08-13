@@ -4,9 +4,9 @@ As beautiful as a shell.
 ![GIF](Minishell.gif)  
 
 ## Team:  
-[Frederick](https://github.com/FWMoor)
-[Mike](https://github.com/MikeFMeyer) 
-[Nolin](https://github.com/nreddystudent)  
+[Frederick](https://github.com/FWMoor)  
+[Mike](https://github.com/MikeFMeyer)  
+[Nolin](https://github.com/nreddystudent)    
 
 ## Installation:  
   
