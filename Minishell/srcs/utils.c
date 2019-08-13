@@ -6,11 +6,33 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 13:35:13 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 14:40:38 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+char			**sys_quotes(char *str, char c)
+{
+	int			i;
+	char		**ret;
+
+	i = 0;
+	while (str[i] && c != ' ')
+	{
+		if (str[i] == c)
+		{
+			i++;
+			while (str[i] != c)
+				i++;
+		}
+		if (str[i] == ' ' || str[i] == '\t')
+			str[i] = c;
+		i++;
+	}
+	ret = ft_strsplit(str, c);
+	return (ret);
+}
 
 void			pop_env(char **env)
 {

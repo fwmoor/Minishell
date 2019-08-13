@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 12:55:00 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 14:39:18 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ int			exec_cd(char *arg);
 char		which_quote(char *str);
 int			get_envind(char *key);
 int			exec_echo(char **arg);
-int			exec_sys(char **coms);
+int			exec_sys(char *com, char c);
+char		**sys_quotes(char *str, char c);
 int			exec_setenv(char **arg);
 int			exec_unsetenv(char **arg);
-int			exec_args(char **commands);
+int			exec_args(char **commands, char c);
 char		**splitthingy(char *com);
 int			setenv_var(char *key, char *val);
 int			main(int ac, char **av, char **env);

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 10:13:16 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 14:40:51 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,22 +81,27 @@ int				sys_call(char **coms, char *path)
 	else
 		wait(&pid);
 	free(path);
+	free_her(coms);
 	return (1);
 }
 
-int				exec_sys(char **coms)
+int				exec_sys(char *com, char c)
 {
+	int			i;
 	char		*temp;
 	char		*path;
 	struct stat	info;
+	char		**coms;
 
+	coms = sys_quotes(com, c);
 	path = get_path(coms[0]);
 	if (path != NULL && coms[0][0] != '~')
 		return (sys_call(coms, path));
 	else if (coms[0][0] == '~')
 	{
-		free(path);
-		return (tilda_cd(coms[0]));
+		i = tilda_cd(coms[0]);
+		free_her(coms);
+		return (i);
 	}
 	if (lstat(coms[0], &info) != -1)
 	{
@@ -106,6 +111,6 @@ int				exec_sys(char **coms)
 			return (sys_call(coms, temp));
 		}
 	}
-	ft_printf("minishell: command not found: %s\n", coms[0]);
+	ft_printf("minishell: command not found: %s\n", com);
 	return (1);
 }
