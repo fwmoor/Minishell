@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 14:40:51 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 14:42:39 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,13 @@ int				exec_sys(char *com, char c)
 {
 	int			i;
 	char		*temp;
-	char		*path;
 	struct stat	info;
 	char		**coms;
 
 	coms = sys_quotes(com, c);
-	path = get_path(coms[0]);
-	if (path != NULL && coms[0][0] != '~')
-		return (sys_call(coms, path));
+	temp = get_path(coms[0]);
+	if (temp != NULL && coms[0][0] != '~')
+		return (sys_call(coms, temp));
 	else if (coms[0][0] == '~')
 	{
 		i = tilda_cd(coms[0]);

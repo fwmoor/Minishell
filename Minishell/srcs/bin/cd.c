@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 14:15:09 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 14:43:40 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int				home_cd(void)
 	return (1);
 }
 
-int			tilda_error(char *dir, int err, char *cur, char *home)
+int				tilda_error(char *dir, int err, char *cur, char *home)
 {
-	char	*temp;
-	
+	char		*temp;
+
 	if (dir[0] == '~')
 		dir++;
 	if (err == 1)
