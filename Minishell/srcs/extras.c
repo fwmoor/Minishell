@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 12:50:29 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 10:49:06 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 12:57:03 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			quote(char *str, char c)
 
 	i = 0;
 	while (str[i])
-	{	
+	{
 		if (str[i] == c)
 			return (i);
 		i++;
@@ -60,4 +60,20 @@ char		**splitthingy(char *com)
 		args[i++] = temp;
 	}
 	return (args);
+}
+
+char		which_quote(char *str)
+{
+	int		i;
+	int		i1;
+	char	c;
+
+	i = quote(str, '\'');
+	i1 = quote(str, '"');
+	c = '\0';
+	if (i != -1 && i1 != -1)
+		c = (i < i1) ? '\'' : '"';
+	else if (i == -1 || i1 == -1)
+		c = (i == -1) ? '"' : '\'';
+	return (c);
 }

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 10:33:33 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 12:57:44 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char			*end_quote(char *str, char c)
 	ptr = str;
 	while ((ptr = ft_strchr(ptr, c)) != NULL)
 	{
-		//++ptr;
 		if ((ptr = ft_strchr(++ptr, c)) == NULL)
 		{
 			check_colour(g_arr[0]);

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 10:32:15 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 12:57:59 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,14 @@ char			*remove_quotes(char *str)
 {
 	int			i;
 	int			i1;
-	int			len = 0;
+	int			len;
 	char		c;
 	char		*ret;
 
-	i = quote(str, '\'');
-	i1 = quote(str, '"');
-	if (i != -1 && i1 != -1)
-		c = (i < i1) ? '\'' : '"';
-	else if (i == -1 || i1 == -1)
-		c = (i == -1) ? '"' : '\'';
 	i = 0;
 	i1 = 0;
+	len = 0;
+	c = which_quote(str);
 	while (str[i])
 		if (str[i++] != c)
 			len++;

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 10:54:45 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 12:55:00 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			exec_help(void);
 int			tilda_cd(char *dirs);
 int			check_cd(char *dir);
 int			exec_cd(char *arg);
+char		which_quote(char *str);
 int			get_envind(char *key);
 int			exec_echo(char **arg);
 int			exec_sys(char **coms);
