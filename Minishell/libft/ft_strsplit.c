@@ -6,16 +6,16 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 10:34:20 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/31 14:07:12 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 13:23:37 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/libft.h"
 
-int		ft_countwords(char const *str, char c)
+int				ft_countwords(char const *str, char c)
 {
-	int count;
-	int	i;
+	int			count;
+	int			i;
 
 	i = 0;
 	count = 0;
@@ -33,8 +33,8 @@ int		ft_countwords(char const *str, char c)
 
 static int		get_word_len(char const *str, char c)
 {
-	int	i;
-	int	len;
+	int			i;
+	int			len;
 
 	i = 0;
 	len = 0;
@@ -50,10 +50,10 @@ static int		get_word_len(char const *str, char c)
 
 char			**ft_strsplit(char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	**str2;
+	int			i;
+	int			j;
+	int			k;
+	char		**str2;
 
 	if (!s || !(str2 = (char **)malloc(sizeof(*str2) *
 		(ft_countwords(s, c) + 1))))

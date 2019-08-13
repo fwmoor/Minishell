@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 14:35:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 09:16:06 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 13:34:33 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ int				check_cd(char *dir)
 {
 	if (!dir)
 		return (1);
-	else if (dir[0] == '~')
-		return (4);
 	else if (dir[0] == '-' && dir[1] == '-' && ft_strlen(dir) == 2)
 		return (1);
 	else if (dir[0] == '-' && ft_strlen(dir) == 1)
 		return (2);
-	else if (dir[0] == '/' && ft_strlen(dir) == 1)
+	else if (dir[0] == '~')
 		return (3);
 	return (0);
 }

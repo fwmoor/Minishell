@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 12:57:59 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/13 13:35:13 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,32 +57,6 @@ char			*remove_quotes(char *str)
 			ret[i1++] = str[i++];
 	}
 	return (ret);
-}
-
-int				tilda_cd(char *dirs)
-{
-	int			i;
-	char		cur[4097];
-	char		*home;
-	char		**multi;
-
-	i = 1;
-	getcwd(cur, 4096);
-	home = get_env("HOME=");
-	chdir(home);
-	free(home);
-	multi = ft_strsplit(dirs, '/');
-	while (multi[i])
-		if ((chdir(multi[i++])) == -1)
-		{
-			ft_printf("cd: no such file or directory: %s\n", dirs);
-			free_her(multi);
-			chdir(cur);
-			return (0);
-		}
-	setenv_var("OLDPWD", cur);
-	free_her(multi);
-	return (1);
 }
 
 char			*get_env(char *str)
