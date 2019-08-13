@@ -25,7 +25,7 @@ Run the following to build the binary: ```make```
 ```exit```  
   
 #### Cancel current process with:  
-Ctrl + C  
+```Ctrl + C```  
 
 ## Disclaimer:  
 This project isn't perfect! Use my code at your own risk. I know of some flags and args not working, if you would like to chat about it, come to my table or send me a slack. This was done with A LOT help from [Mike](https://github.com/MikeFMeyer), [Zia](https://github.com/ziadhorat) and [Nolin](https://github.com/nreddystudent).
