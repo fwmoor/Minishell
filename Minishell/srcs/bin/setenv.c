@@ -101,8 +101,6 @@ int				exec_setenv(char **com)
 	else if (com[3])
 		ft_putstr("setenv: too many arguments\n");
 	else if (com[1] && com[2])
-	{
 		i = setenv_var(com[1], com[2]);
-	}
 	return (i);
 }
