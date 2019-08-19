@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:41 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 14:36:50 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/19 08:39:06 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int				main(int ac, char **av, char **env)
 	i = 1;
 	get_config(ac, av);
 	pop_env(env);
+	ft_putstr("\e[1;1H\e[2J");
 	while (i)
 	{
 		get_dir_path(g_env);
