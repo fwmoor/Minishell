@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 11:56:08 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 12:11:39 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/19 09:58:36 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ int				exec_unsetenv(char **com)
 	else if (com[1] && com[2])
 		ft_putstr("unsetenv: too many arguments\n");
 	else if (com[1])
+	{
 		if ((key_ind = get_envind(com[1])) != -1)
 			i = unsetenv_var(com[1]);
+		else
+			ft_printf("unsetenv: %s: variable not found\n", com[1]);
+	}
 	return (i);
 }
