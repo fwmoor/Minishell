@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/20 08:03:27 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 10:34:59 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			check_builtins(char *com)
 	return (i);
 }
 
-void		error_sys(char **dirs)
+int			error_sys(char **dirs, char *temp)
 {
 	int		i;
 
@@ -56,6 +56,8 @@ void		error_sys(char **dirs)
 	}
 	ft_putchar('\n');
 	free_her(dirs);
+	free(temp);
+	return (1);
 }
 
 
