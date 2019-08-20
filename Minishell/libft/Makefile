@@ -18,7 +18,7 @@ FTFL =		ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	  ft_tolower.c ft_toupper.c ft_foreach.c ft_strrev.c ft_factorial.c \
 	  ft_sqrt.c ft_power.c ft_str_upper.c ft_extra.c ft_flags.c ft_middle.c \
 	  ft_misc.c ft_printing.c ft_printf.c ft_strfill.c ft_middle_2.c \
-	  get_next_line.c free_her.c ft_tdlen.c
+	  get_next_line.c free_her.c ft_tdlen.c ft_start.c
 
 LOBJ =		$(FTFL:.c=.o)
 

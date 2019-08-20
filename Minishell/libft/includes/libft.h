@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:49:55 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 12:09:03 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 10:41:32 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_tdlen(char **arr);
 int					ft_atoi(const char *str);
+int					ft_start(char *s1, char *s2);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strnequ(const char *s1, const char *s2, size_t n);

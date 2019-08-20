@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/20 10:35:08 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 10:42:32 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char			*do_path(char *bin, char *com)
 	char		*temp;
 	char		*path;
 
-	if (ft_strstr(bin, com) != NULL)
+	if (ft_start(bin, com))
 		path = ft_strdup(com);
 	else
 	{
