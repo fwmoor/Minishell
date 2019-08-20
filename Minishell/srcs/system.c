@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 14:42:39 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 08:23:14 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int				sys_call(char **coms, char *path)
 	{
 		if (execve(path, coms, g_env) == -1)
 			ft_printf("minishell: premission denied: %s\n", path);
+		exit(-1);
 	}
 	else if (pid < 0)
 		ft_printf("minishell: unable to fork process: %d\n", pid);
@@ -110,6 +111,6 @@ int				exec_sys(char *com, char c)
 			return (sys_call(coms, temp));
 		}
 	}
-	ft_printf("minishell: command not found: %s\n", com);
+	error_sys(coms);
 	return (1);
 }

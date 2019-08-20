@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:36 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 14:37:18 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 08:03:27 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,28 @@ int			check_builtins(char *com)
 	free_her(coms);
 	return (i);
 }
+
+void		error_sys(char **dirs)
+{
+	int		i;
+
+	i = 0;
+	ft_putstr("minishell: command not found: ");
+	while (dirs[0][i])
+	{
+		if (dirs[0][i] == '\n')
+		{
+			ft_putchar('\\');
+			ft_putchar('n');
+		}
+		else
+			ft_putchar(dirs[0][i]);
+		i++;
+	}
+	ft_putchar('\n');
+	free_her(dirs);
+}
+
 
 int			exec_args(char **coms, char c)
 {
