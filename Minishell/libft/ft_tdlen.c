@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 12:07:45 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/12 12:08:41 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 15:48:53 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ int			ft_tdlen(char **arr)
 	i = 0;
 	while (arr[i])
 		i++;
+	if (i == 0)
+		free_her(arr);
 	return (i);
 }

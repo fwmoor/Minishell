@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:47 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/20 10:35:16 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 15:05:30 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		*remove_quotes(char *dirs);
 void		get_dir_path();
 void		zsh_level(void);
 void		check_nl(char *str);
-void		error_cd(char *dir);
+int			error_cd(char *dir);
 void		pop_env(char **env);
 void		dup_env(char **temp);
 int			error_sys(char **dir, char *temp);

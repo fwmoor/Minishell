@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 14:35:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 13:34:33 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 15:07:17 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char			check_quote(char *str)
 	return ('\0');
 }
 
-void			error_cd(char *dir)
+int				error_cd(char *dir)
 {
 	int			i;
 
@@ -76,4 +76,5 @@ void			error_cd(char *dir)
 		i++;
 	}
 	ft_putchar('\n');
+	return (1);
 }

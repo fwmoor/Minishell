@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 14:40:38 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 15:58:11 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,15 @@ void			get_dir_path(void)
 	check_colour(g_arr[0]);
 	if (ft_strequ(g_arr[3], "True"))
 	{
-		if (ft_strcmp(buf, "/"))
+		if (!ft_strequ(buf, "/"))
 		{
 			home = get_env("HOME=");
 			setenv_var("PWD", buf);
 			ft_printf("%C ", (ft_strequ(home, buf) ? 0xf015 : 0xf07b));
-			ft_printf("~%s", ft_strstr(buf, home) + ft_strlen(home));
+			if (ft_strstr(buf, home))
+				ft_printf("~%s", ft_strstr(buf, home) + ft_strlen(home));
+			else
+				ft_printf("%s", buf);
 			free(home);
 		}
 		else

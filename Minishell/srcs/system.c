@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/20 11:09:25 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 15:46:41 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int				exec_sys(char *com, char c)
 	char		**coms;
 
 	coms = sys_quotes(com, c);
+	if (ft_tdlen(coms) == 0)
+		return (0);
 	temp = get_path(coms[0]);
 	if (temp != NULL && coms[0][0] != '~' && coms[0][0] != '.')
 		return (sys_call(coms, temp));

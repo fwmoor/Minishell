@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 13:29:32 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/13 14:43:40 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 15:51:19 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int				old_cd(void)
 
 	getcwd(cur, 4096);
 	old = get_env("OLDPWD=");
+	if (get_envind("OLDPWD") == -1)
+		return (error_cd(""));
 	home = get_env("HOME=");
 	chdir(old);
 	if (!ft_strequ(old, "/"))
