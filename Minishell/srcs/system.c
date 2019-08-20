@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:23:06 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/20 10:42:32 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/20 11:09:25 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,11 @@ int				exec_sys(char *com, char c)
 		return (i);
 	}
 	if (lstat(coms[0], &info) != -1)
-	{
 		if (S_ISREG(info.st_mode))
 		{
 			ft_strdel(&temp);
 			temp = ft_strdup(coms[0]);
 			return (sys_call(coms, temp));
 		}
-	}
 	return (error_sys(coms, temp));
 }
