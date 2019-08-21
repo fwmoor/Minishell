@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 09:12:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/08/20 15:58:11 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/08/21 09:22:15 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void			get_dir_path(void)
 		{
 			home = get_env("HOME=");
 			setenv_var("PWD", buf);
-			ft_printf("%C ", (ft_strequ(home, buf) ? 0xf015 : 0xf07b));
 			if (ft_strstr(buf, home))
 				ft_printf("~%s", ft_strstr(buf, home) + ft_strlen(home));
 			else
@@ -116,7 +115,7 @@ void			get_dir_path(void)
 			free(home);
 		}
 		else
-			ft_printf("%C /", 0xf1bb);
+			ft_putchar('/');
 		check_nl(g_arr[2]);
 	}
 	ft_putstr("$>");

@@ -12,7 +12,7 @@
 
 #COLOUR changes the colour of teminal text. User input is always default.
 #COLOUR={Red, Green, Yellow, Blue, Magenta, Cyan}. Anything else with set colour to default.
-#COLOUR=Blue
+#COLOUR=Magenta
 
 #PATH displays the path in which the user is currently. Colour is affected by the COLOUR variable.
 #PATH=True. Anything else will set path to False.
