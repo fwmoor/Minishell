@@ -3,7 +3,14 @@ As beautiful as a shell.
 
 ![GIF](Minishell.gif)  
 
-## Team:  
+## WeThinkCode:
+
+**Mandatory:** 100/100  
+**Bonus:** 25/25  
+**Peers:** 125%   
+**Total:** 125/125
+
+### Team:  
 [Fred](https://github.com/FWMoor), [Mike](https://github.com/MikeFMeyer) and [Nolin](https://github.com/nreddystudent)    
 
 ## Installation:  
